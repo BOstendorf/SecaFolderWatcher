@@ -1,0 +1,22 @@
+
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:SecaFolderWatcher.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="850"
+             x:Class="SecaFolderWatcher.Views.GetPatientDataView"
+             x:CompileBindings="True"
+			 x:DataType="vm:GetPatientDataViewModel">
+
+    <Grid 
+      Background="White"
+      ColumnDefinitions="Auto *"
+      RowDefinitions="Auto * * *"
+      >
+        <SelectableTextBlock Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Margin="15,15,15,0" FontSize="18" FontWeight="Bold">Probanden-Eingabe</SelectableTextBlock>
+        <SelectableTextBlock Grid.Row="1" Grid.Column="1" Margin="15,15,15,0" >Row 1</SelectableTextBlock>
+        <SelectableTextBlock Grid.Row="2" Grid.Column="0" Margin="15,15,15,15" >Row 1</SelectableTextBlock>
+        <SelectableTextBlock Grid.Row="2" Grid.Column="1" Margin="15,15,15,15" >Row 1</SelectableTextBlock>
+    </Grid>
+</UserControl>

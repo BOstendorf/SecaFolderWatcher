@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:v="using:SecaFolderWatcher.Views"
+  xmlns:vm="using:SecaFolderWatcher.ViewModels"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+  x:Class="SecaFolderWatcher.Views.MainWindow"
+  Icon="/Assets/avalonia-logo.ico"
+  x:DataType="vm:MainWindowViewModel"
+  x:CompileBindings="true"
+  Title="SecaFolderWatcher">
+
+
+  <Border Background="LightBlue"
+    BorderBrush="Black"
+    BorderThickness="2"
+    Padding="15">
+    <Grid Margin="5"
+      Background="White"
+      ColumnDefinitions="*"
+      RowDefinitions="Auto *">
+      <Border
+        Grid.Row="0"
+        Padding="25">
+        <StackPanel
+          VerticalAlignment="Top"
+          HorizontalAlignment="Stretch"
+          Background="Beige"
+          Orientation="Horizontal">
+          <Button Margin="10" Content="HCHS" Command="{Binding Click}">
+            <Button.Flyout>
+              <Flyout Placement="BottomEdgeAlignedLeft" >
+                <v:GetPatientDataView DataContext="{Binding PatientData}" />
+              </Flyout>
+            </Button.Flyout>
+          </Button>
+          <Button Margin="10" Content="NAKO" Command="{Binding CreateElement}" />
+          <Button Margin="10" Content="Clear" Click="ButtonClick_Clear" />
+        </StackPanel>
+      </Border>
+      <Border
+        Grid.Row="1"
+        Padding="25">
+        <ScrollViewer>
+          <TextBlock Background="Beige" Text="{Binding InfoText}" HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch" Padding="25"
+          TextWrapping="Wrap"/> 
+        </ScrollViewer>
+      </Border>
+    </Grid>
+  </Border>
+</Window>
