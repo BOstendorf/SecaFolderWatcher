@@ -11,4 +11,8 @@ public static class SettingsReader
     string directory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
     Logger.LogInformation($"executable path is ${directory}");
   }
+
+  private static string GetIniFilePath(){
+    return "";
+  }
 }
