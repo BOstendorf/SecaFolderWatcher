@@ -15,4 +15,9 @@ public static class DataValidator
       string pattern_lower_case = @"^dhcc\d{5}(u[0-9]{1}[1-9]{1})?$";
       return Regex.IsMatch(id, pattern) || Regex.IsMatch(id, pattern_lower_case);
     }
+
+    public static bool CheckSex(string sex)
+    {
+      return sex.Equals("M") || sex.Equals("F");
+    }
 }
