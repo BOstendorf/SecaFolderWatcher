@@ -36,7 +36,7 @@
           <ComboBoxItem>M</ComboBoxItem>
           <ComboBoxItem>F</ComboBoxItem>
         </ComboBox>
-        <SelectableTextBlock Grid.Row="4" Grid.Column="0" Margin="15,15,15,15" >Button OK</SelectableTextBlock>
-        <SelectableTextBlock Grid.Row="4" Grid.Column="1" Margin="15,15,15,15" >Button Cancel</SelectableTextBlock>
+        <Button Command="{Binding ClickOK}" Grid.Row="4" Grid.Column="0" Margin="10" Content="OK"/>
+        <Button Command="{Binding ClickCancel}" Grid.Row="4" Grid.Column="1" Margin="10" Content="Cancel"/>
     </Grid>
 </UserControl>
