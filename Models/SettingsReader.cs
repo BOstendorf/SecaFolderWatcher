@@ -18,9 +18,9 @@ public static class SettingsReader
   private static string GetIniFilePath(){
     DirectoryInfo searchPath = Directory.GetParent(_executableDir);
     DirectoryInfo previousPath = new DirectoryInfo(_executableDir);
-    while (!searchPath.Equals(previousPath))
+    while (searchPath != null && previousPath != null && !previousPath.Equals(searchPath))
     {
-      if (searchPath.Name.Equals("SecaFolderWatcher"))
+      if (searchPath.Name.Contains("SecaFolderWatcher"))
       {
         FileInfo[] directoryFiles = searchPath.GetFiles();
         foreach (FileInfo file in directoryFiles)
@@ -34,6 +34,6 @@ public static class SettingsReader
       previousPath = searchPath;
       searchPath = Directory.GetParent(searchPath.FullName);
     }
-    throw new FileNotFoundException("There is no Path with SecaFolderWatcher/SecaFolderWatcher.ini in the executables parent directories");
+    throw new FileNotFoundException("There is no Path with SecaFolderWatcher/SecaFolderWatcher.ini in the executables parent directories. The executable directory is " + _executableDir);
   }
 }
