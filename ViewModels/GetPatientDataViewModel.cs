@@ -1,3 +1,5 @@
+using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -40,6 +42,8 @@ public class GetPatientDataViewModel : ViewModelBase
   {
     Logger.LogInformation("Clicked Button OK");
     Logger.LogInformation("currently selected sex is " + _sex);
+    Logger.LogInformation($"Currently selected date of birth is {_dateOfBirth}");
+    Logger.LogInformation($"currently selected dhcc {_dhcc}");
   }
 
   public void ClickCancel()
