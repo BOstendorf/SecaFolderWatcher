@@ -20,4 +20,21 @@ public static class DataValidator
     {
       return sex.Equals("M") || sex.Equals("F");
     }
+
+    public static async void getParamsFromServer(string id, string mirth_ip, Delegate callback)
+    {
+      HttpClient client = new HttpClient();
+      string url = "http://" + mirth_ip + "/UKE_ImportApp/AutoComplete.php?esz_id=" + id;
+      string response = null;
+      try
+      {
+        response = await client.GetStringAsync(url);
+        //todo rest implementation
+        Logger.LogInformation(response);
+      }
+      catch (Exception e)
+      {
+        Logger.LogError(e.Message);
+      }
+    }
 }
