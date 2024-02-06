@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Avalonia.Controls.Shapes;
 using ReactiveUI;
 
@@ -13,6 +15,9 @@ namespace SecaFolderWatcher.ViewModels
           get { return _InfoText; }
           set { this.RaiseAndSetIfChanged(ref _InfoText, value); }
         }
+
+        public ICommand DialogWindowCommand {get;}
+        public Interaction<DialogWindowViewModel, DialogResultViewModel?> ShowDialog { get; }
 
 
     public void Click()
@@ -28,12 +33,11 @@ namespace SecaFolderWatcher.ViewModels
           InfoText = Logger.GetSessionLog();
           });
       SettingsReader.InitSettingsReader();
-    }
-    
-
-    public void CreateElement()
-    {
-      new Rectangle();
+      ShowDialog = new Interaction<DialogWindowViewModel,DialogResultViewModel?>();
+      DialogWindowCommand = ReactiveCommand.CreateFromTask(async () => {
+          var dialog = new DialogWindowViewModel();
+          var result = await ShowDialog.Handle(dialog);
+          });
     }
 }
 }
