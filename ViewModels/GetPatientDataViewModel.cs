@@ -7,6 +7,25 @@ namespace SecaFolderWatcher.ViewModels;
 public class GetPatientDataViewModel : ViewModelBase
 {
   //public event PropertyChangedEventHandler? PropertyChanged;
+
+  private string _dhcc;
+  public string DHCC
+  {
+    get => _dhcc;
+    set {
+      this.RaiseAndSetIfChanged(ref _dhcc, value);
+    }
+  }
+
+  private DateTimeOffset _dateOfBirth = new DateTimeOffset();
+  public DateTimeOffset DateOfBirth 
+  {
+    get => _dateOfBirth;
+    set {
+      this.RaiseAndSetIfChanged(ref _dateOfBirth, value);
+    }
+  }
+
   private string _sex = "";
   public string Sex
   {
