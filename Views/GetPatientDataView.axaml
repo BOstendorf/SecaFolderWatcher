@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:SecaFolderWatcher.ViewModels"
+            xmlns:sys="clr-namespace:System;assembly=mscorlib"
 			 mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="850"
              x:Class="SecaFolderWatcher.Views.GetPatientDataView"
              x:CompileBindings="True"
@@ -32,9 +33,9 @@
         <SelectableTextBlock Grid.Row="2" Grid.Column="0" Margin="15,15,15,0" VerticalAlignment="Center" >Geburtsdatum</SelectableTextBlock>
         <DatePicker Grid.Row="2" Grid.Column="1" Margin="15,15,15,0"/>
         <SelectableTextBlock Grid.Row="3" Grid.Column="0" Margin="15,15,15,0" VerticalAlignment="Center" >Geschlecht</SelectableTextBlock>
-        <ComboBox Margin="15,15,15,0" Grid.Row="3" Grid.Column="1" SelectedItem="">
-          <ComboBoxItem>M</ComboBoxItem>
-          <ComboBoxItem>F</ComboBoxItem>
+        <ComboBox x:Name="sexComboBox" Margin="15,15,15,0" Grid.Row="3" Grid.Column="1" SelectedItem="{Binding Sex}">
+          <sys:String>M</sys:String>
+          <sys:String>F</sys:String>
         </ComboBox>
         <Button Command="{Binding ClickOK}" Grid.Row="4" Grid.Column="0" Margin="10" Content="OK"/>
         <Button Command="{Binding ClickCancel}" Grid.Row="4" Grid.Column="1" Margin="10" Content="Cancel"/>
