@@ -46,6 +46,7 @@ namespace SecaFolderWatcher.ViewModels
           var dialog = new DialogWindowViewModel();
           var result = await ShowDialog.Handle(dialog);
           });
+      GDT_Content gdt = new GDT_Content("./testing/mddtseca.gdt");
     }
 }
 }
