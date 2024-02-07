@@ -141,6 +141,7 @@ public static class SettingsReader
     Logger.LogInformation($"executable path is ${_executableDir}");
     _iniFilePath = GetIniFilePath();
     ProcessIniFile();
+    _initialized = true;
   }
 
   private static void ProcessIniFile(){
