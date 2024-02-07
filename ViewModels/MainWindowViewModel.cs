@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -32,7 +33,14 @@ namespace SecaFolderWatcher.ViewModels
       Logger.RegisterOnLogCallback(delegate () {
           InfoText = Logger.GetSessionLog();
           });
-      SettingsReader.InitSettingsReader();
+      try
+      {
+        SettingsReader.InitSettingsReader();
+        Logger.SetLogPath(SettingsReader.GetFilePathOf("LOGFILE"));
+      }
+      catch (Exception e){
+        Logger.LogError($"There has been an error while trying to process the program settings. The provided error message is \n {e.Message}");
+      }
       ShowDialog = new Interaction<DialogWindowViewModel,DialogResultViewModel?>();
       DialogWindowCommand = ReactiveCommand.CreateFromTask(async () => {
           var dialog = new DialogWindowViewModel();
