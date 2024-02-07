@@ -36,7 +36,7 @@ public class GDT_MessageLine
       throw new FormatException($"The provided line does not match the expected format. Passed argument is {line}");
     }
     lengthPart = line.Substring(0, 3);
-    if (!Regex.IsMatch(lengthPart, @"\d{5}")){
+    if (!Regex.IsMatch(lengthPart, @"\d{3}")){
       throw new FormatException($"The length bytes do not match the expected format. Given length bytes are {lengthPart}");
     }
     lineLength = int.Parse(lengthPart);
