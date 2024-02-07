@@ -7,22 +7,27 @@ public class GDT_MessageLine
 {
   public string lengthPart {
     get;
+    private set;
   }
 
   public string typePart {
     get;
+    private set;
   }
 
   public string contentPart {
     get;
+    private set;
   }
 
   public string wholeLine {
     get;
+    private set;
   }
 
   public int lineLength {
     get;
+    private set;
   }
 
   public GDT_MessageLine(string line) {
