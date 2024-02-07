@@ -107,6 +107,10 @@ public static class SettingsReader
     Logger.LogInformation($"Setting MIRTH_IP is {iniValue}");
   }
 
+  private static void EnsureInitialized(){
+    if(!_initialized) throw new InvalidOperationException("The SettingsReader is not fully initialized");
+  }
+
   private static void ProcessSettingAUTOSEND(string iniValue)
   {
     _settings["AUTOSEND"] = iniValue;
