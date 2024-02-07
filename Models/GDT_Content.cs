@@ -35,6 +35,7 @@ public class GDT_Content
       gdtMessage = System.IO.File.ReadAllLines(gdtFile_path);
       Logger.LogInformation($"GDT file has been read from {gdtFile_path}");
       foreach (string line in gdtMessage) {
+        Logger.LogInformation($"reading line {line}");
         GDT_MessageLine gdtLine = new GDT_MessageLine(line);
         gdtMessageLines.Add(gdtLine);
         if(String.Compare(gdtLine.typePart, "3000", false) == 0) {
@@ -44,6 +45,8 @@ public class GDT_Content
           this.gdtField6305_oldFileRefPtr = gdtLine.contentPart;
         }
       }
+      Logger.LogInformation($"Found ID is {gdtField3100_ID}");
+      Logger.LogInformation($"Found referenced file {gdtField6305_oldFileRefPtr}");
     }
     catch (Exception e)
     {
