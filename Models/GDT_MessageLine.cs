@@ -67,6 +67,7 @@ public class GDT_MessageLine
 
   public void SetNewContent(string content)
   {
+    if (!content.EndsWith("\r\n")) contentPart = content + "\r\n";
     contentPart = content;
     lineLength = content.Length + 7;
     lengthPart = lineLength.ToString("D3");
