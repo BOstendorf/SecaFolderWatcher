@@ -53,7 +53,7 @@ public class GDT_MessageLine
 
   /*  line consists of a 3 byte prefix representing the length of the line
    *  a 4 byte segment representing the field type id
-   *  and the content of the field
+   *  and the content of the field followed by a \r\n
    */
   public bool FormatValid(string line)
   {
@@ -62,6 +62,7 @@ public class GDT_MessageLine
     string typePart = line.Substring(3, 4);
     if(int.Parse(lengthPart) != line.Length) return false;
     if(!Regex.IsMatch(typePart, @"\d{5}")) return false;
+    if(!line.EndsWith("\r\n")) return false;
     return true;
   }
 
