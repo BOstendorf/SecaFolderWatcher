@@ -49,6 +49,7 @@ public static class Logger
     {
         try
         {
+            message = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + " " + message;
             _sessionLog = $"{_sessionLog} {message} \n";
             if (!File.Exists(logPath))
             {
