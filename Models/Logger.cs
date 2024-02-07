@@ -15,6 +15,11 @@ public static class Logger
         return _lastMessage;
     }
 
+    public static void SetLogPath(FileInfo logfile){
+      LogInformation($"Switch to use logfile specified in .ini file. Further logs are written to {logfile.FullName}");
+      _logPath = logfile.FullName;
+    }
+
     public static string GetSessionLog()
     {
         return _sessionLog;
