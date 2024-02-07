@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 namespace SecaFolderWatcher;
 public static class SettingsReader
@@ -13,6 +14,7 @@ public static class SettingsReader
   private static int _settingsSet = 0;
 
   private static string[] _folderSettingNames = new string[]{"WATCHFOLDER", "TRANSFOLDER", "DESTFOLDER", "SAFEFOLDER"};
+  private static string[] _fileSettingNames = new string[]{"LOGFILE"};
 
   private static Dictionary<string, Action<string>> _expectedSettingsMapping = new Dictionary<string, Action<string>>(){
     {"LOGFILE", delegate (string iniValue) { ProcessSettingLOGFILE(iniValue); } },
@@ -115,6 +117,23 @@ public static class SettingsReader
   {
     _settings["AUTOSEND"] = iniValue;
     Logger.LogInformation($"Setting AUTOSEND is {iniValue}");
+  }
+
+  public static DirectoryInfo GetDirPathOf(string folderSettingName){
+    if(_folderSettingNames.Contains(folderSettingName)){
+      throw new ArgumentException($"The passed setting name {folderSettingName} does not reference any setting defining a directory or file path.");
+    }
+    DirectoryInfo dir = new DirectoryInfo(_settings[folderSettingName]);
+    return dir;
+  }
+
+  public static FileInfo GetFilePathOf(string fileSettingName){
+    if(_fileSettingNames.Contains(fileSettingName)){
+      throw new ArgumentException($"The passed setting name {fileSettingName} does not reference any setting defining a directory or file path.");
+    }
+    FileInfo file = new FileInfo(_settings[fileSettingName]);
+    return file;
+
   }
 
   public static void InitSettingsReader() {
