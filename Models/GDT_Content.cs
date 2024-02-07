@@ -57,11 +57,29 @@ public class GDT_Content
   //migrated from previous live version
   //seems kinda pointless, but who am I to jugde
   public void WriteUpdatedFile(string path) {
+    string message = "";
     foreach (GDT_MessageLine line in gdtMessageLines) {
       if (line.typePart.Equals("8100")) {
         int sentenceLength = Convert.ToInt32(line.contentPart.Length) - gdtField6305_oldFileRefPtr.Length + gdtField6305_newFileRefPtr.Length;
-        //line.SetNewContent();
+        line.SetNewContent(sentenceLength.ToString("D5"));
       }
+      if (line.typePart.Equals("6305")) {
+        line.SetNewContent(gdtField6305_newFileRefPtr);
+      }
+      message += line.wholeLine;
+    }
+    Logger.LogInformation("writing GDT file to {path} with message being {message}");
+    try {
+      FileStream fileStream = new FileStream(
+          path, FileMode.Create, FileAccess.Write);
+      StreamWriter fileWriter = new StreamWriter((Stream)fileStream);
+      fileWriter.WriteLine(message);
+      fileWriter.Close();
+      fileStream.Close();
+    }
+    catch (Exception e)
+    {
+      Logger.LogError($"could not write gdt file ExceptionMessage is {e.Message}");
     }
   }
 }
