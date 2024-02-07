@@ -120,7 +120,7 @@ public static class SettingsReader
   }
 
   public static DirectoryInfo GetDirPathOf(string folderSettingName){
-    if(_folderSettingNames.Contains(folderSettingName)){
+    if(!_folderSettingNames.Contains(folderSettingName)){
       throw new ArgumentException($"The passed setting name {folderSettingName} does not reference any setting defining a directory or file path.");
     }
     DirectoryInfo dir = new DirectoryInfo(_settings[folderSettingName]);
@@ -128,7 +128,7 @@ public static class SettingsReader
   }
 
   public static FileInfo GetFilePathOf(string fileSettingName){
-    if(_fileSettingNames.Contains(fileSettingName)){
+    if(!_fileSettingNames.Contains(fileSettingName)){
       throw new ArgumentException($"The passed setting name {fileSettingName} does not reference any setting defining a directory or file path.");
     }
     FileInfo file = new FileInfo(_settings[fileSettingName]);
