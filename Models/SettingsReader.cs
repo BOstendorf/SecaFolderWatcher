@@ -12,6 +12,8 @@ public static class SettingsReader
   private static Dictionary<string, string> _settings = new Dictionary<string, string>();
   private static int _settingsSet = 0;
 
+  private static string[] _folderSettingNames = new string[]{"WATCHFOLDER", "TRANSFOLDER", "DESTFOLDER", "SAFEFOLDER"};
+
   private static Dictionary<string, Action<string>> _expectedSettingsMapping = new Dictionary<string, Action<string>>(){
     {"LOGFILE", delegate (string iniValue) { ProcessSettingLOGFILE(iniValue); } },
     {"LOGGING_LEVEL", delegate (string iniValue) { ProcessSettingLOGGING_LEVEL(iniValue); } },
