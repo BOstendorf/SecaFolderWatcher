@@ -47,6 +47,7 @@ public class GDT_MessageLine
     if (line.Length != lineLength) {
       throw new FormatException($"The length of the given line doesn't match the encoded line lenght. The encoded length is {lineLength} while the actual length is {line.Length}");
     }
+    wholeLine = line;
   }
 
   /*  line consists of a 3 byte prefix representing the length of the line
@@ -61,5 +62,13 @@ public class GDT_MessageLine
     if(int.Parse(lengthPart) != line.Length) return false;
     if(!Regex.IsMatch(typePart, @"\d{5}")) return false;
     return true;
+  }
+
+  public void SetNewContent(string content)
+  {
+    contentPart = content;
+    lineLength = content.Length + 7;
+    lengthPart = lineLength.ToString("D3");
+    wholeLine = lengthPart + typePart + contentPart + "\r\n";
   }
 }
