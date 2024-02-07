@@ -31,6 +31,7 @@ public class GDT_MessageLine
   }
 
   public GDT_MessageLine(string line) {
+    if (!line.EndsWith("\r\n")) line = line + "\r\n";
     if (line.Length < 7) {
       throw new FormatException($"The provided line does not match the expected format. Passed argument is {line}");
     }
