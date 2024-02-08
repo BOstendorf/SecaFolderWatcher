@@ -34,6 +34,11 @@ public static class DataValidator
       return sex.Equals("M") || sex.Equals("F");
     }
 
+    public static string GetDateOfBirthFormatDescription()
+    {
+      return "A date of birth is expected to be given as ddmmyyyy";
+    }
+
     public static async void getParamsFromServer(string id, string mirth_ip, Delegate callback)
     {
       HttpClient client = new HttpClient();
