@@ -24,6 +24,11 @@ public static class DataValidator
       return Regex.IsMatch(id, pattern) || Regex.IsMatch(id, pattern_lower_case);
     }
 
+    public static string GetSexFormatDescription()
+    {
+      return "A person's sex is expected to be given as either M or F";
+    }
+
     public static bool CheckSex(string sex)
     {
       return sex.Equals("M") || sex.Equals("F");
