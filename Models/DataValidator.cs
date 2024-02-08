@@ -39,6 +39,12 @@ public static class DataValidator
       return "A date of birth is expected to be given as ddmmyyyy";
     }
 
+    public static bool CheckDateOfBirth()
+    {
+      DateTime dateTime;
+      return DateTime.TryParseExact("", "ddmmyyyy", new CultureInfo("de-De"), DateTimeStyles.None, out dateTime);
+    }
+
     public static async void getParamsFromServer(string id, string mirth_ip, Delegate callback)
     {
       HttpClient client = new HttpClient();
