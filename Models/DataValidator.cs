@@ -5,6 +5,12 @@ using System.Text.RegularExpressions;
 namespace SecaFolderWatcher;
 public static class DataValidator
 {
+    
+    public static string GetDHCCFormatDescription()
+    {
+      return "A DHCC id is expected to match one of the formats DHCCxxxxx or DHCCxxxxxUxx or dhccxxxxx or dhccxxxxxuxx where x is any number between 0 and 9.";
+    }
+
     public static bool CheckDHCC(string id)
     {
       /* 
