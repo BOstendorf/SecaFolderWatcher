@@ -82,4 +82,18 @@ public class GDT_Content
       Logger.LogError($"could not write gdt file ExceptionMessage is {e.Message}");
     }
   }
+
+  /*
+   * Function to create a GDT message containing the patient id, the date of birth and the gender.
+   * The message should be created as a file in the specified watchfolder
+   */
+  public static void SendPatientToWatchfolder(string targetPath, string dhcc, string dateOfBirth, string sex)
+  {
+    if (!DataValidator.CheckSex(sex)) {
+      throw new ArgumentException($"{DataValidator.GetSexFormatDescription()} The actual value is {sex}");
+    }
+    if (!DataValidator.CheckDHCC(dhcc)) {
+      throw new ArgumentException($"{DataValidator.GetDHCCFormatDescription()} The actual value is {dhcc}");
+    }
+  }
 }
