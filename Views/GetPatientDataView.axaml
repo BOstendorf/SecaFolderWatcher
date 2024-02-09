@@ -23,7 +23,7 @@
           FontSize="18" 
           FontWeight="Bold">Probanden-Eingabe</SelectableTextBlock>
         <SelectableTextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="15,15,15,0"> ESZ ID-Nummer</SelectableTextBlock>
-        <MaskedTextBox Grid.Row="1" Grid.Column="1" Margin="15,15,15,0" Mask="DH\C\C00000?99" ToolTip.Placement="Bottom" Text="{Binding DHCC}">
+        <MaskedTextBox Grid.Row="1" Grid.Column="1" Margin="15,15,15,0" Mask="DH\C\C00000?99" ToolTip.Placement="Bottom" Text="{Binding DHCC}" Background="{Binding DHCCBackgroundColor}">
           <ToolTip.Tip>
             <TextBlock>
               Die ID kann die Formate "DHCCxxxxx" und "DHCCxxxxxUxx" haben, wobei x eine Zahl zwischen 0 und 9 ist
@@ -31,9 +31,9 @@
           </ToolTip.Tip>
         </MaskedTextBox>
         <SelectableTextBlock Grid.Row="2" Grid.Column="0" Margin="15,15,15,0" VerticalAlignment="Center" >Geburtsdatum</SelectableTextBlock>
-        <DatePicker SelectedDateChanged="OnDateChange" Grid.Row="2" Grid.Column="1" Margin="15,15,15,0" x:Name="datepicker"/>
+        <DatePicker Background="{Binding DateOfBirthBackgroundColor}" SelectedDateChanged="OnDateChange" Grid.Row="2" Grid.Column="1" Margin="15,15,15,0" x:Name="datepicker"/>
         <SelectableTextBlock Grid.Row="3" Grid.Column="0" Margin="15,15,15,0" VerticalAlignment="Center" >Geschlecht</SelectableTextBlock>
-        <ComboBox x:Name="sexComboBox" Margin="15,15,15,0" Grid.Row="3" Grid.Column="1" SelectedItem="{Binding Sex}">
+        <ComboBox Background="{Binding SexBackgroundColor}" x:Name="sexComboBox" Margin="15,15,15,0" Grid.Row="3" Grid.Column="1" SelectedItem="{Binding Sex}">
           <sys:String>M</sys:String>
           <sys:String>F</sys:String>
         </ComboBox>
