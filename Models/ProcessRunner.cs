@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 
 namespace SecaFolderWatcher;
-public class ProcessRunner
+public static class ProcessRunner
 {
   static int RunExecutableFile(FileInfo executablePath) {
     if (!File.Exists(executablePath.FullName)) {
