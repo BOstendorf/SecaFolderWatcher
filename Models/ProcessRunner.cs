@@ -8,7 +8,7 @@ public static class ProcessRunner
 {
   public static int RunExecutableFile(FileInfo executablePath) {
     if (!File.Exists(executablePath.FullName)) {
-      throw new ArgumentException($"The specified executable does not seem to exist. The given path is {executablePath.FullName}");
+      throw new FileNotFoundException($"The specified executable does not seem to exist. The given path is {executablePath.FullName}");
     }
     Process proc = new Process();
     //runs executable directly rather than shell
