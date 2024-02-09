@@ -70,6 +70,19 @@ public class GetPatientDataViewModel : ViewModelBase
 
   public void ClickOK()
   {
+    bool inputsValid = true;
+    if (!DataValidator.CheckDHCC(_dhcc)) {
+      inputsValid = false;
+      DHCCBackgroundColor = COLOR_INVALID;
+    }
+    if (!DataValidator.CheckDateOfBirth(_dateOfBirth.ToString("ddMMyyyy"))){
+      inputsValid = false;
+      DateOfBirthBackgroundColor = COLOR_INVALID;
+    }
+    if (!DataValidator.CheckSex(_sex)){
+      inputsValid = false;
+      SexBackgroundColor = COLOR_INVALID;
+    }
     Logger.LogInformation("Clicked Button OK");
     Logger.LogInformation("currently selected sex is " + _sex);
     Logger.LogInformation($"Currently selected date of birth is {_dateOfBirth}");
