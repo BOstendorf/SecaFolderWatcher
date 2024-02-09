@@ -69,9 +69,10 @@ public class GetPatientDataViewModel : ViewModelBase
     }
   }
 
-  public void HandleChangeDateOfBirth(){
+  public void HandleChangeDateOfBirth(DateTimeOffset newDate){
     _dateOfBirthUnset = false;
     _dateOfBirthBackgroundColor = COLOR_VALID;
+    DateOfBirth = newDate;
   }
 
   public void HandleChangeDHCC(){
