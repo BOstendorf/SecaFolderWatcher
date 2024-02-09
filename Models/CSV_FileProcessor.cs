@@ -24,7 +24,7 @@ public class CSV_FileProcessor
     }
   }
 
-  private static string AssignUniqueID(){
+  public static string AssignUniqueID(){
     string id = $"U_{_uniqueCounter}";
     _uniqueCounter += 1;
     return id;
