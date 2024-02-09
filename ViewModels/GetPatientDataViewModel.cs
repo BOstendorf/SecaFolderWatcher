@@ -10,9 +10,11 @@ namespace SecaFolderWatcher.ViewModels;
 public class GetPatientDataViewModel : ViewModelBase
 {
   //public event PropertyChangedEventHandler? PropertyChanged;
+  private static IBrush COLOR_VALID = Brushes.Beige;
+  private static IBrush COLOR_INVALID = Brushes.PaleVioletRed;
 
   private string _dhcc = "";
-  private IBrush _dhccBackgroundColor = Brushes.Beige;
+  private IBrush _dhccBackgroundColor = COLOR_VALID;
   public IBrush DHCCBackgroundColor
   {
     get => _dhccBackgroundColor;
@@ -21,7 +23,7 @@ public class GetPatientDataViewModel : ViewModelBase
     }
   }
 
-  private IBrush _sexBackgroundColor = Brushes.Beige;
+  private IBrush _sexBackgroundColor = COLOR_VALID;
   public IBrush SexBackgroundColor
   {
     get => _sexBackgroundColor;
@@ -30,7 +32,7 @@ public class GetPatientDataViewModel : ViewModelBase
     }
   }
 
-  private IBrush _dateOfBirthBackgroundColor = Brushes.Beige;
+  private IBrush _dateOfBirthBackgroundColor = COLOR_VALID;
  public IBrush DateOfBirthBackgroundColor
  {
    get => _dateOfBirthBackgroundColor;
