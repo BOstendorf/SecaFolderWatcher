@@ -20,7 +20,7 @@ public static class DataValidator
        * ()? optional group of values
        * u[0-9]{1}[1-9]{1} u followed by one number between 0 and 9 followed by one number between 1 and 9
       */
-      string pattern = @"^DHCC\d{5}(U[0-9]{1}[1-9]{1})?$";
+      string pattern = @"^DHCC\d{5}([U,u][0-9]{1}[1-9]{1})?$";
       string pattern_lower_case = @"^dhcc\d{5}(u[0-9]{1}[1-9]{1})?$";
       return Regex.IsMatch(id, pattern) || Regex.IsMatch(id, pattern_lower_case);
     }
