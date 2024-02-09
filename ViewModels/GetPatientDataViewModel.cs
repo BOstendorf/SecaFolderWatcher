@@ -11,7 +11,7 @@ public class GetPatientDataViewModel : ViewModelBase
 {
   //public event PropertyChangedEventHandler? PropertyChanged;
 
-  private string _dhcc;
+  private string _dhcc = "";
   private IBrush _dhccBackgroundColor = Brushes.Beige;
   public IBrush DHCCBackgroundColor
   {
