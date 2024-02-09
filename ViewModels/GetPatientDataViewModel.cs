@@ -71,16 +71,16 @@ public class GetPatientDataViewModel : ViewModelBase
 
   public void HandleChangeDateOfBirth(DateTimeOffset newDate){
     _dateOfBirthUnset = false;
-    _dateOfBirthBackgroundColor = COLOR_VALID;
+    DateOfBirthBackgroundColor = COLOR_VALID;
     DateOfBirth = newDate;
   }
 
   public void HandleChangeDHCC(){
-    _dhccBackgroundColor = COLOR_VALID;
+    DHCCBackgroundColor = COLOR_VALID;
   }
 
   public void HandleChangeSex(){
-    _sexBackgroundColor = COLOR_VALID;
+    SexBackgroundColor = COLOR_VALID;
   }
 
   public void ClickOK()
