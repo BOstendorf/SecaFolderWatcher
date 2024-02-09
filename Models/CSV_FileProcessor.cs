@@ -50,8 +50,18 @@ public class CSV_FileProcessor
   }
 
   public static bool ProcessCSVFile(FileInfo csvFile) {
-    
-
-    return true;
+    string timestampString = DateTime.Now.ToString("yyyyMMddhhmmss");
+    string id;
+    try {
+      id = GetID_FromFile(csvFile);
+    }
+    catch (Exception e)
+    {
+      Logger.LogError($"No id could be obtained from the file at {csvFile.FullName} \n The thrown Exceptions message is {e.Message}");
+      Logger.LogWarning("A unique id will be generated as a substitute.");
+      id = AssignUniqueID();
+    }
+    throw new NotImplementedException("todo implement sending of file by placing in transfolder");
+    //return true;
   }
 }
