@@ -49,6 +49,7 @@ public class GetPatientDataViewModel : ViewModelBase
     }
   }
 
+  private bool _dateOfBirthUnset = true;
   private DateTimeOffset _dateOfBirth = new DateTimeOffset();
   public DateTimeOffset DateOfBirth 
   {
@@ -75,7 +76,7 @@ public class GetPatientDataViewModel : ViewModelBase
       inputsValid = false;
       DHCCBackgroundColor = COLOR_INVALID;
     }
-    if (!DataValidator.CheckDateOfBirth(_dateOfBirth.ToString("ddMMyyyy"))){
+    if (_dateOfBirthUnset || !DataValidator.CheckDateOfBirth(_dateOfBirth.ToString("ddMMyyyy"))){
       inputsValid = false;
       DateOfBirthBackgroundColor = COLOR_INVALID;
     }
