@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using Avalonia.Media;
 using ReactiveUI;
 namespace SecaFolderWatcher.ViewModels;
 
@@ -11,6 +12,33 @@ public class GetPatientDataViewModel : ViewModelBase
   //public event PropertyChangedEventHandler? PropertyChanged;
 
   private string _dhcc;
+  private IBrush _dhccBackgroundColor = Brushes.PaleVioletRed;
+  public IBrush DHCCBackgroundColor
+  {
+    get => _dhccBackgroundColor;
+    set {
+      this.RaiseAndSetIfChanged(ref _dhccBackgroundColor, value);
+    }
+  }
+
+  private IBrush _sexBackgroundColor = Brushes.PaleVioletRed;
+  public IBrush SexBackgroundColor
+  {
+    get => _sexBackgroundColor;
+    set {
+      this.RaiseAndSetIfChanged(ref _sexBackgroundColor, value);
+    }
+  }
+
+  private IBrush _dateOfBirthBackgroundColor = Brushes.PaleVioletRed;
+ public IBrush DateOfBirthBackgroundColor
+ {
+   get => _dateOfBirthBackgroundColor;
+   set {
+     this.RaiseAndSetIfChanged(ref _dateOfBirthBackgroundColor, value);
+   }
+ }
+
   public string DHCC
   {
     get => _dhcc;
