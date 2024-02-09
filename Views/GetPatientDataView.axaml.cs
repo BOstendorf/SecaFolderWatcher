@@ -7,6 +7,8 @@ using System;
 using SecaFolderWatcher.ViewModels;
 using System.Linq;
 using Avalonia.Interactivity;
+using Avalonia.Input;
+using Avalonia;
 
 namespace SecaFolderWatcher.Views
 {
@@ -27,6 +29,15 @@ namespace SecaFolderWatcher.Views
           Logger.Log(e.NewDate.ToString());
           viewModel.DateOfBirth = (DateTimeOffset)e.NewDate;
           Logger.Log($"triggered date change event {viewModel.Sex}");
+        }
+
+        public void OnDHCCChange(object sender, AvaloniaPropertyChangedEventArgs e)
+        {
+          Logger.Log($"triggered property changed event {e.NewValue}");
+        }
+
+        public void OnSexChange(object sender, SelectionChangedEventArgs e){
+          Logger.Log($"triggered selecteion change event with selection being {e.ToString()}");
         }
 
         protected override void OnDataContextChanged(EventArgs e)
