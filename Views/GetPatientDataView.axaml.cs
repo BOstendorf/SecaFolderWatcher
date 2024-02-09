@@ -29,7 +29,7 @@ namespace SecaFolderWatcher.Views
           viewModel.HandleChangeDateOfBirth((DateTimeOffset)e.NewDate);
         }
 
-        public void OnDHCCChange(object sender, AvaloniaPropertyChangedEventArgs e)
+        public void OnDHCCChange(object sender, KeyEventArgs e)
         {
           GetPatientDataViewModel viewModel = (GetPatientDataViewModel)DataContext;
           viewModel.HandleChangeDHCC();

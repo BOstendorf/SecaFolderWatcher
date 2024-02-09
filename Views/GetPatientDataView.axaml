@@ -24,7 +24,7 @@
           FontWeight="Bold">Probanden-Eingabe</SelectableTextBlock>
         <SelectableTextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="15,15,15,0"> ESZ ID-Nummer</SelectableTextBlock>
         <TextBox 
-          PropertyChanged="OnDHCCChange"
+          KeyDown="OnDHCCChange"
           Grid.Row="1" Grid.Column="1" Margin="15,15,15,0" ToolTip.Placement="Bottom" Text="{Binding DHCC}" Background="{Binding DHCCBackgroundColor}">
           <ToolTip.Tip>
             <TextBlock>
