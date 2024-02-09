@@ -12,7 +12,7 @@ public class GetPatientDataViewModel : ViewModelBase
   //public event PropertyChangedEventHandler? PropertyChanged;
 
   private string _dhcc;
-  private IBrush _dhccBackgroundColor = Brushes.PaleVioletRed;
+  private IBrush _dhccBackgroundColor = Brushes.Beige;
   public IBrush DHCCBackgroundColor
   {
     get => _dhccBackgroundColor;
@@ -21,7 +21,7 @@ public class GetPatientDataViewModel : ViewModelBase
     }
   }
 
-  private IBrush _sexBackgroundColor = Brushes.PaleVioletRed;
+  private IBrush _sexBackgroundColor = Brushes.Beige;
   public IBrush SexBackgroundColor
   {
     get => _sexBackgroundColor;
@@ -30,7 +30,7 @@ public class GetPatientDataViewModel : ViewModelBase
     }
   }
 
-  private IBrush _dateOfBirthBackgroundColor = Brushes.PaleVioletRed;
+  private IBrush _dateOfBirthBackgroundColor = Brushes.Beige;
  public IBrush DateOfBirthBackgroundColor
  {
    get => _dateOfBirthBackgroundColor;
