@@ -43,7 +43,7 @@ public static class DataValidator
     public static bool CheckDateOfBirth(string dateString)
     {
       DateTime dateTime;
-      return DateTime.TryParseExact(dateString, "ddmmyyyy", new CultureInfo("de-De"), DateTimeStyles.None, out dateTime);
+      return DateTime.TryParseExact(dateString, "ddMMyyyy", new CultureInfo("de-De"), DateTimeStyles.None, out dateTime);
     }
 
     public static async void getParamsFromServer(string id, string mirth_ip, Delegate callback)
