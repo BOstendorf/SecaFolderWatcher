@@ -26,18 +26,18 @@ namespace SecaFolderWatcher.Views
         public void OnDateChange(object sender, DatePickerSelectedValueChangedEventArgs e)
         {
           GetPatientDataViewModel viewModel = (GetPatientDataViewModel)DataContext;
-          Logger.Log(e.NewDate.ToString());
-          viewModel.DateOfBirth = (DateTimeOffset)e.NewDate;
-          Logger.Log($"triggered date change event {viewModel.Sex}");
+          viewModel.HandleChangeDateOfBirth((DateTimeOffset)e.NewDate);
         }
 
         public void OnDHCCChange(object sender, AvaloniaPropertyChangedEventArgs e)
         {
-          Logger.Log($"triggered property changed event {e.NewValue}");
+          GetPatientDataViewModel viewModel = (GetPatientDataViewModel)DataContext;
+          viewModel.HandleChangeDHCC();
         }
 
         public void OnSexChange(object sender, SelectionChangedEventArgs e){
-          Logger.Log($"triggered selecteion change event with selection being {e.ToString()}");
+          GetPatientDataViewModel viewModel = (GetPatientDataViewModel)DataContext;
+          viewModel.HandleChangeSex();
         }
 
         protected override void OnDataContextChanged(EventArgs e)
