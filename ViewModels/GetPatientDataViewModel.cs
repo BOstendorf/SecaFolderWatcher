@@ -69,6 +69,19 @@ public class GetPatientDataViewModel : ViewModelBase
     }
   }
 
+  public void HandleChangeDateOfBirth(){
+    _dateOfBirthUnset = false;
+    _dateOfBirthBackgroundColor = COLOR_VALID;
+  }
+
+  public void HandleChangeDHCC(){
+    _dhccBackgroundColor = COLOR_VALID;
+  }
+
+  public void HandleChangeSex(){
+    _sexBackgroundColor = COLOR_VALID;
+  }
+
   public void ClickOK()
   {
     bool inputsValid = true;
