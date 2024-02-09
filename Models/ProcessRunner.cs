@@ -6,7 +6,7 @@ using System.IO;
 namespace SecaFolderWatcher;
 public static class ProcessRunner
 {
-  static int RunExecutableFile(FileInfo executablePath) {
+  public static int RunExecutableFile(FileInfo executablePath) {
     if (!File.Exists(executablePath.FullName)) {
       throw new ArgumentException($"The specified executable does not seem to exist. The given path is {executablePath.FullName}");
     }
