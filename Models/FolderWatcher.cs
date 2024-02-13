@@ -62,7 +62,7 @@ public class FolderWatcher
     return (String.Compare(fileInfo.Name, "mddtseca.gdt", true) == 0);
   }
 
-  private void ProcessFile(string path)
+  private bool ProcessFile(string path)
   {
     Logger.LogInformation($"Start processing of file {path}");
     string datetimeString = DateTime.Now.ToString("yyyyMMddhhmmss");
