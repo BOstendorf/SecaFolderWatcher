@@ -115,6 +115,26 @@ public class FolderWatcher
 
   private void TranseferFiles()
   {
-    throw new NotImplementedException();
+    try
+    {
+      Logger.LogInformation("Starting transfer of files");
+      string[] pdfsToTransfer = Directory.GetFiles(_transfolder.FullName,  "*.pdf");
+      string[] toTransfer = Directory.GetFiles(_transfolder.FullName);
+
+      //first transfer .pdf files
+      foreach (string pdfPath in pdfsToTransfer){
+        if (!TransferSingleFile(pdfPath)) return;
+      }
+
+      //transfer rest
+      foreach (string path in toTransfer){
+        if(String.Compare(Path.GetExtension(path), ".pdf", true) == 0) continue;
+        if (!TransferSingleFile(path)) return;
+      }
+    }
+    catch (Exception e)
+    {
+      Logger.LogError($"An error occured during transfer of files. The thrown Exceptions message is {e.Message}");
+    }
   }
 }
