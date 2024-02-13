@@ -17,8 +17,14 @@ public class FolderWatcher
     set;
   }
 
-  public FolderWatcher(DirectoryInfo watchfolder, bool modeHCHS) {
+  private string _systemID {
+    get;
+    set;
+  }
+
+  public FolderWatcher(DirectoryInfo watchfolder, bool modeHCHS, string systemID) {
     _modeHCHS = modeHCHS;
+    _systemID = systemID;
     watcher = new FileSystemWatcher();
     watcher.Path = watchfolder.FullName;
     watcher.Filter = "*.*";
