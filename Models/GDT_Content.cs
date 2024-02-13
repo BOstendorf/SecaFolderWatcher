@@ -21,6 +21,7 @@ public class GDT_Content
 
   public string gdtField6305_newFileRefPtr {
     get;
+    set;
   } = "";
 
   public List<GDT_MessageLine> gdtMessageLines {
