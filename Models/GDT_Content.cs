@@ -15,10 +15,12 @@ public class GDT_Content
     get;
   } = null;
 
+  //old pointer is fullpath
   public string gdtField6305_oldFileRefPtr {
     get;
   } = "";
 
+  //new pointer is file name only
   public string gdtField6305_newFileRefPtr {
     get;
     set;
