@@ -136,13 +136,13 @@ public class FolderWatcher
 
       //first transfer .pdf files
       foreach (string pdfPath in pdfsToTransfer){
-        if (!TransferSingleFile(pdfPath)) return;
+        if (!TransferSingleFile(new FileInfo(pdfPath))) return;
       }
 
       //transfer rest
       foreach (string path in toTransfer){
         if(String.Compare(Path.GetExtension(path), ".pdf", true) == 0) continue;
-        if (!TransferSingleFile(path)) return;
+        if (!TransferSingleFile(new FileInfo(path))) return;
       }
     }
     catch (Exception e)
