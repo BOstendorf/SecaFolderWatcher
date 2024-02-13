@@ -57,6 +57,12 @@ public class GDT_Content
     }
   }
 
+  public void Copy_gdtField6305_oldFileRefPtr(DirectoryInfo targetDir){
+      string targetPath = Path.Combine(targetDir.FullName, gdtField6305_newFileRefPtr);
+      Logger.LogInformation($"Copying {gdtField6305_oldFileRefPtr} to {targetPath}");
+      File.Copy(gdtField6305_oldFileRefPtr, targetPath);
+  }
+
   //migrated from previous live version
   //seems kinda pointless, but who am I to jugde
   public void WriteUpdatedFile(string path) {
