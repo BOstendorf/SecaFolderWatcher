@@ -57,7 +57,7 @@ public class GDT_Content
     }
   }
 
-  public void Delete_gdtField6305_oldFielRefPtr(){
+  public void Delete_gdtField6305_oldFileRefPtr(){
     Logger.LogInformation($"Removing file {gdtField6305_oldFileRefPtr}");
     File.Delete(gdtField6305_oldFileRefPtr);
   }
