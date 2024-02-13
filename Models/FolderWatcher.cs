@@ -115,6 +115,7 @@ public class FolderWatcher
 
   private void TranseferFiles()
   {
+    System.Threading.Thread.Sleep(1000);
     try
     {
       Logger.LogInformation("Starting transfer of files");
