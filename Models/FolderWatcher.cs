@@ -37,12 +37,21 @@ public class FolderWatcher
     set;
   }
 
+  private DirectoryInfo _watchfolder {
+    get;
+    set;
+  }
+
   public FolderWatcher(DirectoryInfo watchfolder, DirectoryInfo transfolder, bool modeHCHS, string systemID, DirectoryInfo destfolder, DirectoryInfo safefolder) {
     _modeHCHS = modeHCHS;
     _systemID = systemID;
     _transfolder = transfolder;
     _destfolder = destfolder;
     _safefolder = safefolder;
+    _watchfolder = watchfolder;
+  }
+
+  public void EnableWatcherEventLoop(){
     watcher = new FileSystemWatcher();
     watcher.Path = watchfolder.FullName;
     watcher.Filter = "*.*";
