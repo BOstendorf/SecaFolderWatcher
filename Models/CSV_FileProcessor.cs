@@ -53,7 +53,19 @@ public class CSV_FileProcessor
         return fieldValues[idIndex];
     }
 
-    public static bool ProcessCSVFile(FileInfo csvFile)
+    public static bool ProcessCSVFile(FileInfo csvFile){
+      try
+      {
+        return ProcessCSVFile(csvFile, "");
+      }
+      catch (Exception e)
+      {
+        Logger.LogError($"Tried to ProcessCSVFile without specification of system id and failed. Message of caught exception is {e.Message}");
+        return false;
+      }
+    }
+
+    public static bool ProcessCSVFile(FileInfo csvFile, string system_id)
     {
         string timestampString = DateTime.Now.ToString("yyyyMMddhhmmss");
         string id;
