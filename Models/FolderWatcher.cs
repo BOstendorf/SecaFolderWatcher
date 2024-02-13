@@ -69,6 +69,14 @@ public class FolderWatcher
     throw new NotImplementedException();
   }
 
+  private void ProcessRelatedCSVFiles(string path){
+    string directory = Path.GetDirectoryName(path);
+    foreach (string csvPath in Directory.GetFiles(directory, "*.csv")) {
+      FileInfo csvFile = new FileInfo(csvPath);
+      CSV_FileProcessor.ProcessCSVFile(csvFile, _systemID, _transfolder);
+    }
+  }
+
   private void TranseferFiles()
   {
     throw new NotImplementedException();
