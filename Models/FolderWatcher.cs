@@ -103,7 +103,6 @@ public class FolderWatcher
       Logger.LogError($"The .gdt message or one of the related files could not be processed the thrown exceptions message is {e.Message}");
       return false;
     }
-    throw new NotImplementedException();
   }
 
   private void ProcessRelatedCSVFiles(string path){
