@@ -51,7 +51,7 @@ public class FolderWatcher
   {
     Logger.LogInformation($"New file: {e.FullPath}");
     if (_modeHCHS){
-      ProcessFile(e.FullPath);
+      ProcessGDTFile(e.FullPath);
       TranseferFiles();
     }
   }
@@ -62,7 +62,7 @@ public class FolderWatcher
     return (String.Compare(fileInfo.Name, "mddtseca.gdt", true) == 0);
   }
 
-  private bool ProcessFile(string path)
+  private bool ProcessGDTFile(string path)
   {
     Logger.LogInformation($"Start processing of file {path}");
     string datetimeString = DateTime.Now.ToString("yyyyMMddhhmmss");
