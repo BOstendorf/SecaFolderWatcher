@@ -79,7 +79,21 @@ public class CSV_FileProcessor
             Logger.LogWarning("A unique id will be generated as a substitute.");
             id = AssignUniqueID();
         }
-        throw new NotImplementedException("todo implement sending of file by placing in transfolder");
-        //return true;
+        try
+        {
+          string newFileName = $"{system_id}_{id}_{timestampString}{csvFile.Extension}";
+          if (!Directory.Exists(transfolder.FullName)){
+            Logger.LogInformation($"The specified Transfolder directory does not exist already and will be created at {transfolder.FullName}");
+            Directory.CreateDirectory(transfolder.FullName);
+          }
+          Logger.LogInformation($"Move {csvFile.FullName} to {transfolder.FullName}{newFileName}");
+          csvFile.MoveTo(Path.Combine(transfolder.FullName, newFileName));
+        }
+        catch (Exception e)
+        {
+          Logger.LogError($"There was some error while trying to process the given CSV file. The process will be aborted. The caught exception message is {e.Message}");
+          return false;
+        }
+        return true;
     }
 }
