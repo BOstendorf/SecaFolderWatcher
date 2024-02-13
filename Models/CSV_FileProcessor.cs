@@ -10,58 +10,64 @@ namespace SecaFolderWatcher;
 
 public class CSV_FileProcessor
 {
-  private static int _uniqueCounter = 0;
+    private static int _uniqueCounter = 0;
 
-  public static void EnsureCSV(FileInfo file)
-  {
-    if(!file.Extension.Equals(".csv"))
+    public static void EnsureCSV(FileInfo file)
     {
-      throw new ArgumentException($"The given path is expected to point to a .csv file. The actual path is {file.FullName}");
+        if (!file.Extension.Equals(".csv"))
+        {
+            throw new ArgumentException($"The given path is expected to point to a .csv file. The actual path is {file.FullName}");
+        }
+        if (!File.Exists(file.FullName))
+        {
+            throw new FileNotFoundException($"The csv file at {file.FullName} could not be found");
+        }
     }
-    if(!File.Exists(file.FullName))
-    {
-      throw new FileNotFoundException($"The csv file at {file.FullName} could not be found");
-    }
-  }
 
-  public static string AssignUniqueID(){
-    string id = $"U_{_uniqueCounter}";
-    _uniqueCounter += 1;
-    return id;
-  }
-  // Comment as taken from previous visual basic version
-  //  '	The CSV file is made of 2 lines, fields separated by ";"
-  //  '	line[0]:  'name1';'id'   ;.....;'nameX';'nameY';'nameZ'
-  //  '	line[1]:  'val_1';'idVal';.....;'val_X';'val_Y';'val_Z'
-  //  '	CAVE: escaping of ";" within items is not foreseen
-  private static string GetID_FromFile(FileInfo csvFile) {
-    string[] fileLines = File.ReadAllLines(csvFile.FullName);
-    if (fileLines.Length < 2) 
+    public static string AssignUniqueID()
     {
-      throw new FormatException("The given csvFile doesn't match the expected format. The file is expected to contain at least two lines");
+        string id = $"U_{_uniqueCounter}";
+        _uniqueCounter += 1;
+        return id;
     }
-    string[] fieldNames = fileLines[0].Split(";");
-    string[] fieldValues = fileLines[1].Split(";");
-    if(!fieldNames.Contains("id")){
-      throw new FormatException("The given .csv file does not contain a field with name id");
-    }
-    int idIndex = fieldNames.IndexOf("id");
-    return fieldValues[idIndex];
-  }
 
-  public static bool ProcessCSVFile(FileInfo csvFile) {
-    string timestampString = DateTime.Now.ToString("yyyyMMddhhmmss");
-    string id;
-    try {
-      id = GetID_FromFile(csvFile);
-    }
-    catch (Exception e)
+    // Comment as taken from previous visual basic version
+    //  '	The CSV file is made of 2 lines, fields separated by ";"
+    //  '	line[0]:  'name1';'id'   ;.....;'nameX';'nameY';'nameZ'
+    //  '	line[1]:  'val_1';'idVal';.....;'val_X';'val_Y';'val_Z'
+    //  '	CAVE: escaping of ";" within items is not foreseen
+    private static string GetID_FromFile(FileInfo csvFile)
     {
-      Logger.LogError($"No id could be obtained from the file at {csvFile.FullName} \n The thrown Exceptions message is {e.Message}");
-      Logger.LogWarning("A unique id will be generated as a substitute.");
-      id = AssignUniqueID();
+        string[] fileLines = File.ReadAllLines(csvFile.FullName);
+        if (fileLines.Length < 2)
+        {
+            throw new FormatException("The given csvFile doesn't match the expected format. The file is expected to contain at least two lines");
+        }
+        string[] fieldNames = fileLines[0].Split(";");
+        string[] fieldValues = fileLines[1].Split(";");
+        if (!fieldNames.Contains("id"))
+        {
+            throw new FormatException("The given .csv file does not contain a field with name id");
+        }
+        int idIndex = fieldNames.IndexOf("id");
+        return fieldValues[idIndex];
     }
-    throw new NotImplementedException("todo implement sending of file by placing in transfolder");
-    //return true;
-  }
+
+    public static bool ProcessCSVFile(FileInfo csvFile)
+    {
+        string timestampString = DateTime.Now.ToString("yyyyMMddhhmmss");
+        string id;
+        try
+        {
+            id = GetID_FromFile(csvFile);
+        }
+        catch (Exception e)
+        {
+            Logger.LogError($"No id could be obtained from the file at {csvFile.FullName} \n The thrown Exceptions message is {e.Message}");
+            Logger.LogWarning("A unique id will be generated as a substitute.");
+            id = AssignUniqueID();
+        }
+        throw new NotImplementedException("todo implement sending of file by placing in transfolder");
+        //return true;
+    }
 }
