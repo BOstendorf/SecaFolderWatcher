@@ -27,10 +27,16 @@ public class FolderWatcher
     set;
   }
 
-  public FolderWatcher(DirectoryInfo watchfolder, DirectoryInfo transfolder, bool modeHCHS, string systemID) {
+  private DirectoryInfo _destfolder {
+    get;
+    set;
+  }
+
+  public FolderWatcher(DirectoryInfo watchfolder, DirectoryInfo transfolder, bool modeHCHS, string systemID, DirectoryInfo destfolder) {
     _modeHCHS = modeHCHS;
     _systemID = systemID;
     _transfolder = transfolder;
+    _destfolder = destfolder;
     watcher = new FileSystemWatcher();
     watcher.Path = watchfolder.FullName;
     watcher.Filter = "*.*";
