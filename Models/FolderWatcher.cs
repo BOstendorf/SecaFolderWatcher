@@ -150,4 +150,32 @@ public class FolderWatcher
       Logger.LogError($"An error occured during transfer of files. The thrown Exceptions message is {e.Message}");
     }
   }
+
+  private bool TransferSingleFile(FileInfo source)
+  {
+    string dest = Path.Combine(_destfolder.FullName, source.Name);
+    try
+    {
+      Logger.LogInformation($"Copy file from {source.FullName} to {dest}");
+      source.CopyTo(dest, true);
+    }
+    catch (Exception e)
+    {
+      Logger.LogError($"The file could not be copied the thrown exceptions message is {e.Message}");
+      return false;
+    }
+
+    string safe = Path.Combine(_safefolder.FullName, source.Name);
+    try
+    {
+      Logger.LogInformation($"Move file from {source.FullName} to {safe}");
+      source.MoveTo(safe, true);
+    }
+    catch (Exception e)
+    {
+      Logger.LogError($"The file could not be moved the thrown exceptions message is {e.Message}");
+      return false;
+    }
+    return true;
+  }
 }
