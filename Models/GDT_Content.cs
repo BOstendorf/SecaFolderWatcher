@@ -57,6 +57,11 @@ public class GDT_Content
     }
   }
 
+  public void Delete_gdtField6305_oldFielRefPtr(){
+    Logger.LogInformation($"Removing file {gdtField6305_oldFileRefPtr}");
+    File.Delete(gdtField6305_oldFileRefPtr);
+  }
+
   public void Copy_gdtField6305_oldFileRefPtr(DirectoryInfo targetDir){
       string targetPath = Path.Combine(targetDir.FullName, gdtField6305_newFileRefPtr);
       Logger.LogInformation($"Copying {gdtField6305_oldFileRefPtr} to {targetPath}");
