@@ -53,10 +53,10 @@ public class CSV_FileProcessor
         return fieldValues[idIndex];
     }
 
-    public static bool ProcessCSVFile(FileInfo csvFile){
+    public static bool ProcessCSVFile(FileInfo csvFile, DirectoryInfo transfolder){
       try
       {
-        return ProcessCSVFile(csvFile, "");
+        return ProcessCSVFile(csvFile, "", transfolder);
       }
       catch (Exception e)
       {
@@ -65,7 +65,7 @@ public class CSV_FileProcessor
       }
     }
 
-    public static bool ProcessCSVFile(FileInfo csvFile, string system_id)
+    public static bool ProcessCSVFile(FileInfo csvFile, string system_id, DirectoryInfo transfolder)
     {
         string timestampString = DateTime.Now.ToString("yyyyMMddhhmmss");
         string id;
