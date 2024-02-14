@@ -18,8 +18,8 @@ namespace SecaFolderWatcher.ViewModels
             set { this.RaiseAndSetIfChanged(ref _InfoText, value); }
         }
 
-        public ICommand DialogWindowCommand { get; }
-        public Interaction<DialogWindowViewModel, DialogResultViewModel?> ShowDialog { get; }
+        public ICommand DialogWindowCommand { get; private set; }
+        public Interaction<DialogWindowViewModel, DialogResultViewModel?> ShowDialog { get; private set;}
 
 
         public void Click()
