@@ -28,14 +28,14 @@
           HorizontalAlignment="Stretch"
           Background="Beige"
           Orientation="Horizontal">
-          <Button Margin="10" Content="HCHS" Command="{Binding Click}">
+          <Button Margin="10" Content="HCHS" Command="{Binding Click}" Background="{Binding HCHSButtonColor}">
             <Button.Flyout>
               <Flyout Placement="BottomEdgeAlignedLeft" >
                 <v:GetPatientDataView DataContext="{Binding PatientData}" />
               </Flyout>
             </Button.Flyout>
           </Button>
-          <Button Margin="10" Content="NAKO" Command="{Binding DialogWindowCommand}" />
+          <Button Margin="10" Content="NAKO" Command="{Binding DialogWindowCommand}" Background="{Binding NAKOButtonColor}"/>
           <Button Margin="10" Content="Clear" Command="{Binding ButtonClearClick}" />
         </StackPanel>
       </Border>
