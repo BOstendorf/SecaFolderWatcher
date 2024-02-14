@@ -28,12 +28,7 @@
           HorizontalAlignment="Stretch"
           Background="Beige"
           Orientation="Horizontal">
-          <Button Margin="10" Content="HCHS" Command="{Binding Click}" Background="{Binding HCHSButtonColor}">
-            <Button.Flyout>
-              <Flyout Placement="BottomEdgeAlignedLeft" >
-                <v:GetPatientDataView DataContext="{Binding PatientData}" />
-              </Flyout>
-            </Button.Flyout>
+          <Button Margin="10" Content="HCHS" Command="{Binding DialogWindowCommand}" Background="{Binding HCHSButtonColor}">
           </Button>
           <Button Margin="10" Content="NAKO" Command="{Binding DialogWindowCommand}" Background="{Binding NAKOButtonColor}"/>
           <Button Margin="10" Content="Clear" Command="{Binding ButtonClearClick}" Background="LightGray"/>
