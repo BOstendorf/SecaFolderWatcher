@@ -35,6 +35,13 @@ namespace SecaFolderWatcher.ViewModels
             {
                 InfoText = Logger.GetSessionLog();
             });
+            PrepareSettings();
+            PrepareDialogWindow_GetPatientData();
+            GDT_Content gdt = new GDT_Content("./testing/mddtseca.gdt");
+        }
+
+        private void PrepareSettings()
+        {
             try
             {
                 SettingsReader.InitSettingsReader();
@@ -44,8 +51,6 @@ namespace SecaFolderWatcher.ViewModels
             {
                 Logger.LogError($"There has been an error while trying to process the program settings. The provided error message is \n {e.Message}");
             }
-            PrepareDialogWindow_GetPatientData();
-            GDT_Content gdt = new GDT_Content("./testing/mddtseca.gdt");
         }
 
         private void PrepareDialogWindow_GetPatientData()
