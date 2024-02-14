@@ -135,7 +135,7 @@ public class FolderWatcher
     }
   }
 
-  private void TranseferFiles()
+  public void TranseferFiles()
   {
     Thread.Sleep(1000);
     try
