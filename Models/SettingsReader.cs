@@ -139,7 +139,7 @@ public static class SettingsReader
 
   public static string GetSettingValue(string settingName){
     EnsureInitialized();
-    if(!_fileSettingNames.Contains(settingName)){
+    if(!_expectedSettingsMapping.ContainsKey(settingName)){
       throw new ArgumentException($"The passed setting name {settingName} does not reference any setting.");
     }
     return _settings[settingName];
