@@ -17,7 +17,7 @@ public static class Logger
         set
         {
             if (value.Equals("")) return;
-            _logPrefix = $"<<{value}>>";
+            _logPrefix = $" <<{value}>> ";
         }
     }
 
