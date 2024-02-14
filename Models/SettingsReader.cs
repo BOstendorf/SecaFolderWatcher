@@ -7,6 +7,12 @@ using System.Linq;
 namespace SecaFolderWatcher;
 public static class SettingsReader
 {
+  public static string settingID_watchfolder { get; } = "WATCHFOLDER";
+  public static string settingID_safefolder { get; } = "SAFEFOLDER";
+  public static string settingID_destfolder { get; } = "DESTFOLDER";
+  public static string settingID_transfolder { get; } = "TRANSFOLDER";
+  public static string settingID_systemID { get; } = "SYSTEM_ID";
+
   private static bool _initialized = false;
   private static string _executableDir = ""; 
   private static string _iniFilePath;
