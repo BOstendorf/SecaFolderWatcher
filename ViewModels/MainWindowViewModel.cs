@@ -18,14 +18,15 @@ namespace SecaFolderWatcher.ViewModels
             get { return _InfoText; }
             set { this.RaiseAndSetIfChanged(ref _InfoText, value); }
         }
+        private const string _defaultButtonColor = "LightGray";
 
-        private string _HCHSButtonColor = "";
+        private string _HCHSButtonColor = _defaultButtonColor;
         public string HCHSButtonColor {
           get { return _HCHSButtonColor; }
           set { this.RaiseAndSetIfChanged(ref _HCHSButtonColor, value); }
         }
 
-        private string _NAKOButtonColor = "";
+        private string _NAKOButtonColor = _defaultButtonColor;
         public string NAKOButtonColor {
           get { return _NAKOButtonColor; }
           set { this.RaiseAndSetIfChanged(ref _NAKOButtonColor, value); }
