@@ -111,6 +111,10 @@ public static class Logger
       LogError(message);
     }
 
+    public static void LogErrorVerbose(string message, Exception e){
+      LogErrorVerbose(message, e.Message);
+    }
+
     public static void LogInformation(string message)
     {
         message = "Information Log ::> " + message;
@@ -138,6 +142,10 @@ public static class Logger
     {
       message = $"{message} \r\n The available related error message is \r\n \t\"{compositeMessage}\"";
       LogError(message, path);
+    }
+
+    public static void LogErrorVerbose(string message, Exception e, string path){
+      LogErrorVerbose(message, e.Message, path);
     }
 
     public static void LogInformation(string message, string path)
