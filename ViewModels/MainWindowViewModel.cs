@@ -21,6 +21,18 @@ namespace SecaFolderWatcher.ViewModels
         public ICommand DialogWindowCommand { get; private set; }
         public Interaction<DialogWindowViewModel, DialogResultViewModel?> ShowDialog { get; private set;}
 
+        private FolderWatcher _folderWatcher { get; set; }
+
+        private void PrepareFolderWatcher(){
+          DirectoryInfo watchfolder = SettingsReader.GetDirPathOf(SettingsReader.settingID_watchfolder);
+          DirectoryInfo destfolder = SettingsReader.GetDirPathOf(SettingsReader.settingID_destfolder);
+          DirectoryInfo transfolder = SettingsReader.GetDirPathOf(SettingsReader.settingID_transfolder);
+          DirectoryInfo safefolder = SettingsReader.GetDirPathOf(SettingsReader.settingID_safefolder);
+          string systemID = SettingsReader.GetSettingValue(SettingsReader.settingID_systemID);
+          _folderWatcher = new FolderWatcher(watchfolder, transfolder, true, systemID, destfolder, safefolder);
+          _folderWatcher.TranseferFiles();
+          _folderWatcher.EnableWatcherEventLoop();
+        }
 
         public void Click()
         {
