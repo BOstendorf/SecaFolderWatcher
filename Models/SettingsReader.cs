@@ -135,7 +135,14 @@ public static class SettingsReader
     }
     FileInfo file = new FileInfo(_settings[fileSettingName]);
     return file;
+  }
 
+  public static string GetSettingValue(string settingName){
+    EnsureInitialized();
+    if(!_fileSettingNames.Contains(settingName)){
+      throw new ArgumentException($"The passed setting name {settingName} does not reference any setting.");
+    }
+    return _settings[settingName];
   }
 
   public static void InitSettingsReader() {
