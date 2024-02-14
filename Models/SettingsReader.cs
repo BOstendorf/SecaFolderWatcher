@@ -193,6 +193,10 @@ public static class SettingsReader
       if (!_expectedSettingsMapping.ContainsKey(lineSplit[0])) {
         throw new FormatException($"The SETTING_NAME contained in the current line is not expected. The given SETTING_NAME is {lineSplit[0]}");
       }
+      if (lineSplit[1].Equals(""))
+      {
+        throw new FormatException($"For the Setting {lineSplit[0]} is a value expected, but not given");
+      }
       _expectedSettingsMapping[lineSplit[0]](lineSplit[1]);
       settingsSet += 1;
     }
