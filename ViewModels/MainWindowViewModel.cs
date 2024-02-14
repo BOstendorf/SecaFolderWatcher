@@ -40,6 +40,12 @@ namespace SecaFolderWatcher.ViewModels
             InfoText = InfoText + "test\n";
             Logger.LogInformation("Clicked Button HCHS");
         }
+
+        public void ButtonClearClick()
+        {
+          InfoText = "";
+        }
+
         public GetPatientDataViewModel PatientData { get; } = new GetPatientDataViewModel();
 
         public MainWindowViewModel()
