@@ -5,6 +5,7 @@ using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Avalonia.Controls.Shapes;
+using Avalonia.Media;
 using ReactiveUI;
 
 
@@ -96,12 +97,7 @@ namespace SecaFolderWatcher.ViewModels
             {
                 try
                 {
-                    Logger.LogInformation("Disable NAKO Mode");
-                    Logger.logPrefix = "HCHS";
-                    FileInfo disableNAKO_Executable = SettingsReader.GetFilePathOf(SettingsReader.settingID_disableNAKO);
-                    if(ProcessRunner.RunExecutableFile(disableNAKO_Executable) != 0) {
-                      throw new SystemException("The disable NAKO script didn't execute correctly. Can't continue... ");
-                    }
+                    Mode_HCHS.TryDisableNAKO();
                     HCHSButtonColor = Brushes.PaleGreen;
                     NAKOButtonColor = Brushes.OrangeRed;
                 }
