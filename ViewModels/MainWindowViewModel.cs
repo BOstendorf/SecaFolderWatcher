@@ -44,13 +44,18 @@ namespace SecaFolderWatcher.ViewModels
             {
                 Logger.LogError($"There has been an error while trying to process the program settings. The provided error message is \n {e.Message}");
             }
+            PrepareDialogWindow_GetPatientData();
+            GDT_Content gdt = new GDT_Content("./testing/mddtseca.gdt");
+        }
+
+        private void PrepareDialogWindow_GetPatientData()
+        {
             ShowDialog = new Interaction<DialogWindowViewModel, DialogResultViewModel?>();
             DialogWindowCommand = ReactiveCommand.CreateFromTask(async () =>
             {
                 var dialog = new DialogWindowViewModel();
                 var result = await ShowDialog.Handle(dialog);
             });
-            GDT_Content gdt = new GDT_Content("./testing/mddtseca.gdt");
         }
     }
 }
