@@ -49,6 +49,13 @@ public static class SettingsReader
     {"AUTOSEND", delegate (string iniValue) { ProcessSettingAUTOSEND(iniValue); } },
   };
 
+  private static void EnsureDirectoryExists(string dirSettingName, string path){
+    DirectoryInfo folder = new DirectoryInfo(path);
+    if (!folder.Exists){
+      throw new DirectoryNotFoundException($"The path for the {dirSettingName} directory does not seem to exist. The given path is {path} and the path is resolved to {folder.FullName}");
+    }
+  }
+
   private static void ProcessSettingLOGFILE(string iniValue)
   {
     _settings["LOGFILE"] = iniValue;
@@ -69,36 +76,28 @@ public static class SettingsReader
 
   private static void ProcessSettingWATCHFOLDER(string iniValue)
   {
-    if (!Directory.Exists(iniValue)){
-      throw new DirectoryNotFoundException($"The path for the watchfolder directory does not seem to exist. The given path is {iniValue}");
-    }
+    EnsureDirectoryExists("WATCHFOLDER", iniValue);
     _settings["WATCHFOLDER"] = iniValue;
     Logger.LogInformation($"Setting WATCHFOLDER is {iniValue}");
   }
 
   private static void ProcessSettingTRANSFOLDER(string iniValue)
   {
-    if (!Directory.Exists(iniValue)){
-      throw new DirectoryNotFoundException($"The path for the transfolder directory does not seem to exist. The given path is {iniValue}");
-    }
+    EnsureDirectoryExists("TRANSFOLDER", iniValue);
     _settings["TRANSFOLDER"] = iniValue;
     Logger.LogInformation($"Setting TRANSFOLDER is {iniValue}");
   }
 
   private static void ProcessSettingDESTFOLDER(string iniValue)
   {
-    if (!Directory.Exists(iniValue)){
-      throw new DirectoryNotFoundException($"The path for the destfolder directory does not seem to exist. The given path is {iniValue}");
-    }
+    EnsureDirectoryExists("DESTFOLDER", iniValue);
     _settings["DESTFOLDER"] = iniValue;
     Logger.LogInformation($"Setting DESTFOLDER is {iniValue}");
   }
 
   private static void ProcessSettingSAFEFOLDER(string iniValue)
   {
-    if (!Directory.Exists(iniValue)){
-      throw new DirectoryNotFoundException($"The path for the safefolder directory does not seem to exist. The given path is {iniValue}");
-    }
+    EnsureDirectoryExists("SAFEFOLDER", iniValue);
     _settings["SAFEFOLDER"] = iniValue;
     Logger.LogInformation($"Setting SAFEFOLDER is {iniValue}");
   }
