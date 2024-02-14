@@ -10,14 +10,26 @@ public static class Logger
     private static string _sessionLog = "";
     private static string _lastMessage = "";
 
+    private static string _logPrefix = "";
+    public static string logPrefix
+    {
+        get { return _logPrefix; }
+        set
+        {
+            if (value.Equals("")) return;
+            _logPrefix = $"<<{value}>>";
+        }
+    }
+
     public static string GetLastMessage()
     {
         return _lastMessage;
     }
 
-    public static void SetLogPath(FileInfo logfile){
-      LogInformation($"Switch to use logfile specified in .ini file. Further logs are written to {logfile.FullName}");
-      _logPath = logfile.FullName;
+    public static void SetLogPath(FileInfo logfile)
+    {
+        LogInformation($"Switch to use logfile specified in .ini file. Further logs are written to {logfile.FullName}");
+        _logPath = logfile.FullName;
     }
 
     public static string GetSessionLog()
@@ -27,7 +39,7 @@ public static class Logger
 
     public static void EmptySessionLog()
     {
-      _sessionLog = "";
+        _sessionLog = "";
     }
 
     public static void RegisterOnLogCallback(Action action)
@@ -54,7 +66,7 @@ public static class Logger
     {
         try
         {
-            message = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + " " + message;
+            message = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + " " + logPrefix + message;
             _sessionLog = $"{_sessionLog} {message} \n";
             if (!File.Exists(logPath))
             {
