@@ -1,6 +1,7 @@
 
 using System;
 using System.IO;
+using System.Threading;
 
 namespace SecaFolderWatcher;
 
@@ -113,7 +114,7 @@ public class FolderWatcher
       File.Delete(path);
 
       //race condition mitigation
-      System.Threading.Thread.Sleep(1000);
+      Thread.Sleep(1000);
       ProcessRelatedCSVFiles(path);
 
       Logger.LogInformation($"Finished processing of .gdt message and related files");
@@ -136,7 +137,7 @@ public class FolderWatcher
 
   private void TranseferFiles()
   {
-    System.Threading.Thread.Sleep(1000);
+    Thread.Sleep(1000);
     try
     {
       Logger.LogInformation("Starting transfer of files");
