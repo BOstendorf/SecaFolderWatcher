@@ -29,7 +29,11 @@ public static class SettingsReader
       settingID_safefolder
   };
 
-  private static string[] _fileSettingNames = new string[]{settingID_logfile};
+  private static string[] _fileSettingNames = new string[]{
+    settingID_logfile,
+    settingID_disableNAKO,
+    settingID_enableNAKO
+  };
 
   private static Dictionary<string, Action<string>> _expectedSettingsMapping = new Dictionary<string, Action<string>>(){
     {"LOGFILE", delegate (string iniValue) { ProcessSettingLOGFILE(iniValue); } },
