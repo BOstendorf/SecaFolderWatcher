@@ -19,6 +19,18 @@ namespace SecaFolderWatcher.ViewModels
             set { this.RaiseAndSetIfChanged(ref _InfoText, value); }
         }
 
+        private string _HCHSButtonColor = "";
+        public string HCHSButtonColor {
+          get { return _HCHSButtonColor; }
+          set { this.RaiseAndSetIfChanged(ref _HCHSButtonColor, value); }
+        }
+
+        private string _NAKOButtonColor = "";
+        public string NAKOButtonColor {
+          get { return _NAKOButtonColor; }
+          set { this.RaiseAndSetIfChanged(ref _NAKOButtonColor, value); }
+        }
+
         public ICommand DialogWindowCommand { get; private set; }
         public Interaction<DialogWindowViewModel, DialogResultViewModel?> ShowDialog { get; private set; }
 
