@@ -12,6 +12,8 @@ public static class SettingsReader
   public static string settingID_destfolder { get; } = "DESTFOLDER";
   public static string settingID_transfolder { get; } = "TRANSFOLDER";
   public static string settingID_systemID { get; } = "SYSTEM_ID";
+  public static string settingID_disableNAKO { get; } = "DISABLE_NAKO";
+  public static string settingID_enableNAKO { get; } = "ENABLE_NAKO";
 
   private static bool _initialized = false;
   private static string _executableDir = ""; 
@@ -19,7 +21,13 @@ public static class SettingsReader
   private static Dictionary<string, string> _settings = new Dictionary<string, string>();
   private static int _settingsSet = 0;
 
-  private static string[] _folderSettingNames = new string[]{"WATCHFOLDER", "TRANSFOLDER", "DESTFOLDER", "SAFEFOLDER"};
+  private static string[] _folderSettingNames = new string[]{
+      settingID_destfolder,
+      settingID_watchfolder,
+      settingID_transfolder,
+      settingID_safefolder
+  };
+
   private static string[] _fileSettingNames = new string[]{"LOGFILE"};
 
   private static Dictionary<string, Action<string>> _expectedSettingsMapping = new Dictionary<string, Action<string>>(){
