@@ -179,6 +179,9 @@ public static class SettingsReader
   }
 
   private static void ProcessIniFile(){
+    if(!File.Exists(_iniFilePath)) {
+      throw new FileNotFoundException($"The .ini file was expected to be located at {_iniFilePath} but could not be found.");
+    }
     string[] fileLines = File.ReadAllLines(_iniFilePath);
     foreach (string line in fileLines){
       if (line.Trim() == "") continue;
