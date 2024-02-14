@@ -15,6 +15,10 @@ public static class SettingsReader
   public static string settingID_disableNAKO { get; } = "DISABLE_NAKO";
   public static string settingID_enableNAKO { get; } = "ENABLE_NAKO";
   public static string settingID_logfile { get; } = "LOGFILE";
+  public static string settingID_debugLevel { get; } = "DEBUG_LEVEL";
+  public static string settingID_logLevel { get; } = "LOGGING_LEVEL";
+  public static string settingID_autosend { get; } = "AUTOSEND";
+  public static string settingID_mirthIP { get; } = "MIRTH_IP";
 
   private static bool _initialized = false;
   private static string _executableDir = ""; 
