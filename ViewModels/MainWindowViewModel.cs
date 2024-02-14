@@ -50,6 +50,7 @@ namespace SecaFolderWatcher.ViewModels
             });
             PrepareSettings();
             PrepareDialogWindow_GetPatientData();
+            PrepareFolderWatcher();
             GDT_Content gdt = new GDT_Content("./testing/mddtseca.gdt");
         }
 
