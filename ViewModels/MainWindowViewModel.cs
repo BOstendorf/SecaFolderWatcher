@@ -43,6 +43,7 @@ namespace SecaFolderWatcher.ViewModels
 
         public void ButtonClearClick()
         {
+          Logger.EmptySessionLog();
           InfoText = "";
         }
 
