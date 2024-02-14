@@ -25,6 +25,11 @@ public static class Logger
         return _sessionLog;
     }
 
+    public static void EmptySessionLog()
+    {
+      _sessionLog = "";
+    }
+
     public static void RegisterOnLogCallback(Action action)
     {
         _listeningOnLog.Add(action);
