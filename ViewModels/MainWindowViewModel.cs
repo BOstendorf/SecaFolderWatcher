@@ -18,16 +18,16 @@ namespace SecaFolderWatcher.ViewModels
             get { return _InfoText; }
             set { this.RaiseAndSetIfChanged(ref _InfoText, value); }
         }
-        private const string _defaultButtonColor = "LightGray";
+        private IBrush _defaultButtonColor = Brushes.LightGray;
 
-        private string _HCHSButtonColor = _defaultButtonColor;
-        public string HCHSButtonColor {
+        private IBrush _HCHSButtonColor;
+        public IBrush HCHSButtonColor {
           get { return _HCHSButtonColor; }
           set { this.RaiseAndSetIfChanged(ref _HCHSButtonColor, value); }
         }
 
-        private string _NAKOButtonColor = _defaultButtonColor;
-        public string NAKOButtonColor {
+        private IBrush _NAKOButtonColor;
+        public IBrush NAKOButtonColor {
           get { return _NAKOButtonColor; }
           set { this.RaiseAndSetIfChanged(ref _NAKOButtonColor, value); }
         }
@@ -69,6 +69,8 @@ namespace SecaFolderWatcher.ViewModels
             {
                 InfoText = Logger.GetSessionLog();
             });
+            HCHSButtonColor = _defaultButtonColor;
+            NAKOButtonColor = _defaultButtonColor;
             PrepareSettings();
             PrepareDialogWindow_GetPatientData();
             PrepareFolderWatcher();
