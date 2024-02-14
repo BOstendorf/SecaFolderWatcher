@@ -20,7 +20,6 @@ public static class SettingsReader
   private static string _executableDir = ""; 
   private static string _iniFilePath;
   private static Dictionary<string, string> _settings = new Dictionary<string, string>();
-  private static int _settingsSet = 0;
 
   private static string[] _folderSettingNames = new string[]{
       settingID_destfolder,
@@ -173,12 +172,14 @@ public static class SettingsReader
   }
 
   public static void InitSettingsReader(string iniFilePath) {
+    Logger.LogInformation($"loading file {iniFilePath}");
     _iniFilePath = iniFilePath;
     ProcessIniFile();
     _initialized = true;
   }
 
   private static void ProcessIniFile(){
+    int settingsSet = 0;
     if(!File.Exists(_iniFilePath)) {
       throw new FileNotFoundException($"The .ini file was expected to be located at {_iniFilePath} but could not be found.");
     }
@@ -193,9 +194,9 @@ public static class SettingsReader
         throw new FormatException($"The SETTING_NAME contained in the current line is not expected. The given SETTING_NAME is {lineSplit[0]}");
       }
       _expectedSettingsMapping[lineSplit[0]](lineSplit[1]);
-      _settingsSet += 1;
+      settingsSet += 1;
     }
-    if (_settingsSet < _expectedSettingsMapping.Count)
+    if (settingsSet < _expectedSettingsMapping.Count)
     {
       string expectedNames = "";
       string setNames = "";
@@ -205,7 +206,7 @@ public static class SettingsReader
       foreach (string key in _settings.Keys){
         setNames += $"\t\t {key}\n";
       }
-      throw new ApplicationException($"The SecaFolderWatcher.ini file is expected to contain the following {_expectedSettingsMapping.Count} settings \n {expectedNames} \n only the following {_settingsSet} settings have been set {setNames}");
+      throw new ApplicationException($"The SecaFolderWatcher.ini file is expected to contain the following {_expectedSettingsMapping.Count} settings \n {expectedNames} \n only the following {settingsSet} settings have been set {setNames}");
     }
   }
 
