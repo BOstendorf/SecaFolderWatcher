@@ -94,6 +94,25 @@ namespace SecaFolderWatcher.ViewModels
             ShowDialog = new Interaction<DialogWindowViewModel, DialogResultViewModel?>();
             DialogWindowCommand = ReactiveCommand.CreateFromTask(async () =>
             {
+                try
+                {
+                    Logger.LogInformation("Disable NAKO Mode");
+                    Logger.logPrefix = "HCHS";
+                    FileInfo disableNAKO_Executable = SettingsReader.GetFilePathOf(SettingsReader.settingID_disableNAKO);
+                    if(ProcessRunner.RunExecutableFile(disableNAKO_Executable) != 0) {
+                      throw new SystemException("The disable NAKO script didn't execute correctly. Can't continue... ");
+                    }
+                    HCHSButtonColor = Brushes.PaleGreen;
+                    NAKOButtonColor = Brushes.OrangeRed;
+                }
+                catch (Exception e)
+                {
+                  Logger.LogErrorVerbose("Some error occured and the program execution cannot continue", e.Message);
+
+                  HCHSButtonColor = Brushes.OrangeRed;
+                  NAKOButtonColor = Brushes.OrangeRed;
+                  return;
+                }
                 var dialog = new DialogWindowViewModel();
                 var result = await ShowDialog.Handle(dialog);
             });
