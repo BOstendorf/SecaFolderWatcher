@@ -83,7 +83,7 @@ namespace SecaFolderWatcher.ViewModels
             }
             catch (Exception e)
             {
-                Logger.LogError($"There has been an error while trying to process the program settings. The provided error message is \n {e.Message}");
+              Logger.LogErrorVerbose("There has been an error while trying to process the program settings", e.Message);
             }
         }
 

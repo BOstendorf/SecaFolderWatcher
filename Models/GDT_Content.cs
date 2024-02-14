@@ -93,7 +93,7 @@ public class GDT_Content
     }
     catch (Exception e)
     {
-      Logger.LogError($"could not write gdt file ExceptionMessage is {e.Message}");
+      Logger.LogErrorVerbose("Could not write gdt file", e.Message);
     }
   }
 

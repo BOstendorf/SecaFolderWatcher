@@ -60,7 +60,7 @@ public class CSV_FileProcessor
       }
       catch (Exception e)
       {
-        Logger.LogError($"Tried to ProcessCSVFile without specification of system id and failed. Message of caught exception is {e.Message}");
+        Logger.LogErrorVerbose("Tried to process csv file without specification of system id and failed while trying", e.Message);
         return false;
       }
     }
@@ -75,7 +75,7 @@ public class CSV_FileProcessor
         }
         catch (Exception e)
         {
-            Logger.LogError($"No id could be obtained from the file at {csvFile.FullName} \n The thrown Exceptions message is {e.Message}");
+          Logger.LogErrorVerbose($"No id could be obtained from the file at {csvFile.FullName}", e.Message);
             Logger.LogWarning("A unique id will be generated as a substitute.");
             id = AssignUniqueID();
         }
@@ -91,7 +91,7 @@ public class CSV_FileProcessor
         }
         catch (Exception e)
         {
-          Logger.LogError($"There was some error while trying to process the given CSV file. The process will be aborted. The caught exception message is {e.Message}");
+          Logger.LogErrorVerbose("There was some error while trying to process the given .csv file. The process will be aborted", e.Message);
           return false;
         }
         return true;

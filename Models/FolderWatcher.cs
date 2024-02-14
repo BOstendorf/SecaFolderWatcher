@@ -122,7 +122,7 @@ public class FolderWatcher
     }
     catch (Exception e)
     {
-      Logger.LogError($"The .gdt message or one of the related files could not be processed the thrown exceptions message is {e.Message}");
+      Logger.LogErrorVerbose("The .gdt message or one of the related files could not be processed", e.Message);
       return false;
     }
   }
@@ -157,7 +157,7 @@ public class FolderWatcher
     }
     catch (Exception e)
     {
-      Logger.LogError($"An error occured during transfer of files. The thrown Exceptions message is {e.Message}");
+      Logger.LogErrorVerbose("An error occured during transfer of files", e.Message);
     }
   }
 
@@ -171,7 +171,7 @@ public class FolderWatcher
     }
     catch (Exception e)
     {
-      Logger.LogError($"The file could not be copied the thrown exceptions message is {e.Message}");
+      Logger.LogErrorVerbose("The file could not be copied", e.Message);
       return false;
     }
 
@@ -183,7 +183,7 @@ public class FolderWatcher
     }
     catch (Exception e)
     {
-      Logger.LogError($"The file could not be moved the thrown exceptions message is {e.Message}");
+      Logger.LogErrorVerbose("The file could not be moved", e.Message);
       return false;
     }
     return true;
