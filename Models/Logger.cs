@@ -105,6 +105,12 @@ public static class Logger
         FlushLog(_logPath, message);
     }
 
+    public static void LogErrorVerbose(string message, string compositeMessage)
+    {
+      message = $"{message} \r\n The available related error message is \r\n \t\"{compositeMessage}\"";
+      LogError(message);
+    }
+
     public static void LogInformation(string message)
     {
         message = "Information Log ::> " + message;
@@ -126,6 +132,12 @@ public static class Logger
     {
         message = "Error Log ::> " + message;
         FlushLog(path, message);
+    }
+
+    public static void LogErrorVerbose(string message, string compositeMessage, string path)
+    {
+      message = $"{message} \r\n The available related error message is \r\n \t\"{compositeMessage}\"";
+      LogError(message, path);
     }
 
     public static void LogInformation(string message, string path)
