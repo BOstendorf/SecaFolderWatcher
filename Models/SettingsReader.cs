@@ -14,6 +14,7 @@ public static class SettingsReader
   public static string settingID_systemID { get; } = "SYSTEM_ID";
   public static string settingID_disableNAKO { get; } = "DISABLE_NAKO";
   public static string settingID_enableNAKO { get; } = "ENABLE_NAKO";
+  public static string settingID_logfile { get; } = "LOGFILE";
 
   private static bool _initialized = false;
   private static string _executableDir = ""; 
@@ -28,7 +29,7 @@ public static class SettingsReader
       settingID_safefolder
   };
 
-  private static string[] _fileSettingNames = new string[]{"LOGFILE"};
+  private static string[] _fileSettingNames = new string[]{settingID_logfile};
 
   private static Dictionary<string, Action<string>> _expectedSettingsMapping = new Dictionary<string, Action<string>>(){
     {"LOGFILE", delegate (string iniValue) { ProcessSettingLOGFILE(iniValue); } },
