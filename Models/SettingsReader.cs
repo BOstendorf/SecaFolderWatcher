@@ -172,6 +172,12 @@ public static class SettingsReader
     _initialized = true;
   }
 
+  public static void InitSettingsReader(string iniFilePath) {
+    _iniFilePath = iniFilePath;
+    ProcessIniFile();
+    _initialized = true;
+  }
+
   private static void ProcessIniFile(){
     string[] fileLines = File.ReadAllLines(_iniFilePath);
     foreach (string line in fileLines){
