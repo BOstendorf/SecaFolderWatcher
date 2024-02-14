@@ -107,7 +107,7 @@ public static class Logger
 
     public static void LogErrorVerbose(string message, string compositeMessage)
     {
-      message = $"{message} \r\n The available related error message is \r\n \t\"{compositeMessage}\"";
+      message = $"{message} \r\n \tThe available related error message is \r\n \t\"{compositeMessage}\"";
       LogError(message);
     }
 
@@ -140,7 +140,7 @@ public static class Logger
 
     public static void LogErrorVerbose(string message, string compositeMessage, string path)
     {
-      message = $"{message} \r\n The available related error message is \r\n \t\"{compositeMessage}\"";
+      message = $"{message} \r\n \tThe available related error message is \r\n \t\"{compositeMessage}\"";
       LogError(message, path);
     }
 
