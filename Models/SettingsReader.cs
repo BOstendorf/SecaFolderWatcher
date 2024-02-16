@@ -26,7 +26,7 @@ public static class SettingsReader
   private static string _iniFilePath;
   private static Dictionary<string, string> _settings = new Dictionary<string, string>();
 
-  private static string[] _folderSettingNames = new string[]{
+  public static string[] folderSettingNames {get; private set; } = new string[]{
       settingID_destfolder,
       settingID_watchfolder,
       settingID_transfolder,
