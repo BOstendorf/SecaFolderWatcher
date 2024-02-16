@@ -84,6 +84,7 @@ public static class Logger
             fileWriter.Close();
             fileStream.Close();
             TriggerOnLogCallbacks();
+            Console.WriteLine(message);
         }
         catch (Exception ex)
         {
