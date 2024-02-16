@@ -139,7 +139,7 @@ public class SettingsReaderInstance
   {
     SettingsReader.EnsureDirectoryExists(SettingsReader.settingID_destfolder, iniValue);
     _settings[SettingsReader.settingID_destfolder] = iniValue;
-    Logger.LogInformation($"Setting{SettingsReader.settingID_destfolder}is {iniValue}");
+    Logger.LogInformation($"Setting {SettingsReader.settingID_destfolder}is {iniValue}");
   }
 
   private void ProcessSettingSAFEFOLDER(string iniValue)
