@@ -32,7 +32,7 @@ public static class SettingsReader
       settingID_safefolder
   };
 
-  private static string[] _fileSettingNames = new string[]{
+  public static string[] fileSettingNames {get; private set;} = new string[]{
     settingID_logfile,
     settingID_disableNAKO,
     settingID_enableNAKO
