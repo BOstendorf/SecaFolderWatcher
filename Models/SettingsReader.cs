@@ -20,7 +20,7 @@ public static class SettingsReader
   public static string settingID_autosend { get; } = "AUTOSEND";
   public static string settingID_mirthIP { get; } = "MIRTH_IP";
 
-  private static bool _initialized = false;
+  public static bool _initialized {get; private set; } = false;
   private static string _executableDir = ""; 
   private static string _iniFilePath;
   private static Dictionary<string, string> _settings = new Dictionary<string, string>();
