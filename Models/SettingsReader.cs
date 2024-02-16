@@ -53,7 +53,7 @@ public static class SettingsReader
     {"AUTOSEND", delegate (string iniValue) { ProcessSettingAUTOSEND(iniValue); } },
   };
 
-  private static void EnsureDirectoryExists(string dirSettingName, string path){
+  public static void EnsureDirectoryExists(string dirSettingName, string path){
     DirectoryInfo folder = new DirectoryInfo(path);
     if (!folder.Exists){
       throw new DirectoryNotFoundException($"The path for the {dirSettingName} directory does not seem to exist. The given path is {path} and the path is resolved to {folder.FullName}");
