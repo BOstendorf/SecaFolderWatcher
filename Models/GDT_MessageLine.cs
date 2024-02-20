@@ -61,7 +61,7 @@ public class GDT_MessageLine
     string lengthPart = line.Substring(0, 3);
     string typePart = line.Substring(3, 4);
     if(int.Parse(lengthPart) != line.Length) return false;
-    if(!Regex.IsMatch(typePart, @"\d{5}")) return false;
+    if(!Regex.IsMatch(typePart, @"\d{4}")) return false;
     if(!line.EndsWith("\r\n")) return false;
     return true;
   }
