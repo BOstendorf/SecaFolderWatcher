@@ -30,20 +30,28 @@ public class GDT_MessageLine
     private set;
   }
 
+  private static void ValidateLengthPartFormat(string lengthPart){
+    if (!Regex.IsMatch(lengthPart, @"\d{3}")){
+      throw new FormatException($"The length bytes do not match the expected format. Given length bytes are {lengthPart}");
+    }
+  }
+
+  private static void ValidateTypePartFormat(string typePart) {
+    if (!Regex.IsMatch(typePart, @"\d{4}")) {
+      throw new FormatException($"The type part does not match the expected format");
+    }
+  }
+
   public GDT_MessageLine(string line) {
     if (!line.EndsWith("\r\n")) line = line + "\r\n";
     if (line.Length < 7) {
       throw new FormatException($"The provided line does not match the expected format. Passed argument is {line}");
     }
     lengthPart = line.Substring(0, 3);
-    if (!Regex.IsMatch(lengthPart, @"\d{3}")){
-      throw new FormatException($"The length bytes do not match the expected format. Given length bytes are {lengthPart}");
-    }
+    ValidateLengthPartFormat(lengthPart);
     lineLength = int.Parse(lengthPart);
     typePart = line.Substring(3, 4);
-    if (!Regex.IsMatch(typePart, @"\d{4}")) {
-      throw new FormatException($"The type part does not match the expected format");
-    }
+    ValidateTypePartFormat(typePart);
     contentPart = line.Substring(7);
     if (line.Length != lineLength) {
       throw new FormatException($"The length of the given line doesn't match the encoded line lenght. The encoded length is {lineLength} while the actual length is {line.Length}");
