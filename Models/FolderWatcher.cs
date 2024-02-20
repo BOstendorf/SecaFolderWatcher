@@ -44,6 +44,9 @@ public class FolderWatcher
   }
 
   public FolderWatcher(DirectoryInfo watchfolder, DirectoryInfo transfolder, bool modeHCHS, string systemID, DirectoryInfo destfolder, DirectoryInfo safefolder) {
+    if(watchfolder == null || transfolder == null || destfolder == null || safefolder == null){
+      throw new ArgumentNullException("Expect all passed DirectoryInfo objects to not be null");
+    }
     _modeHCHS = modeHCHS;
     _systemID = systemID;
     _transfolder = transfolder;
