@@ -110,8 +110,44 @@ public class GDT_Content
     if (!DataValidator.CheckSex(sex)) {
       throw new ArgumentException($"{DataValidator.GetSexFormatDescription()} The actual value is {sex}");
     }
+    if (sex.Equals("M")) sex = "1";
+    if (sex.Equals("F")) sex = "2";
     if (!DataValidator.CheckDHCC(dhcc)) {
       throw new ArgumentException($"{DataValidator.GetDHCCFormatDescription()} The actual value is {dhcc}");
     }
+    if (!DataValidator.CheckDateOfBirth(dateOfBirth)) {
+      throw new ArgumentException($"{DataValidator.GetDateOfBirthFormatDescription()} The actual value is {dateOfBirth}");
+    }
+    /* The format of the sent gdt message is
+     * 013 8000 6301 # Satztyp = "Stammdaten übermitteln"
+     * 014 8100 <ddddd> # Satzlänge
+     * 014 9218 val # Version
+     * val 3000 <dhcc> # Namenszusatz
+     * val 3101 <dhcc> # Vorname
+     * val 3102 <dhcc> # Name
+     * 017 3103 <date> # Geburtsdatum
+     * 010 3110 <sex>  # Geschlecht
+     * the date is given by ddmmyyyy
+     * the sex is given as 1 for male and 2 for female (as defined by rule 112)
+     */
+    GDT_MessageLine line;
+    string message = "";
+    // Satztyp Zeile
+    message += new GDT_MessageLine("013", "8000", "6301\r\n").wholeLine;
+    // Satzlänge Zeile
+    message += new GDT_MessageLine("014", "8100", "LLLLL\r\n").wholeLine;
+    // Version Zeile
+    message += new GDT_MessageLine("014", "9218", "02.10\r\n").wholeLine;
+    message += new GDT_MessageLine("3100", dhcc).wholeLine;
+    message += new GDT_MessageLine("3101", dhcc).wholeLine;
+    message += new GDT_MessageLine("3102", dhcc).wholeLine;
+    message += new GDT_MessageLine("3103", dateOfBirth).wholeLine;
+    message += new GDT_MessageLine("3110", sex).wholeLine;
+    message = message.Replace("LLLLL", message.Length.ToString("D5"));
+    string targetPath = Path.Combine(targetDirPath, targetFileName);
+    StreamWriter outFileWriter = new StreamWriter(targetPath, false);
+    outFileWriter.WriteLine(message);
+    outFileWriter.Close();
+    Logger.LogInformation($"writing GDT file to {targetPath} with message being \n{message}");
   }
 }
