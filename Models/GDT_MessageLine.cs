@@ -55,7 +55,7 @@ public class GDT_MessageLine
    *  a 4 byte segment representing the field type id
    *  and the content of the field followed by a \r\n
    */
-  public bool FormatValid(string line)
+  public static bool FormatValid(string line)
   {
     if(line.Length < 7) return false;
     string lengthPart = line.Substring(0, 3);
