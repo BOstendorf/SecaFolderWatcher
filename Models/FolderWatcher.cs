@@ -58,7 +58,7 @@ public class FolderWatcher
   public void EnableWatcherEventLoop(){
     watcher = new FileSystemWatcher();
     watcher.Path = _watchfolder.FullName;
-    watcher.Filter = "*.*";
+    watcher.Filter = "*";
     watcher.IncludeSubdirectories = false;
 
     watcher.NotifyFilter = NotifyFilters.Attributes |
