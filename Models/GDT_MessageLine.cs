@@ -51,6 +51,9 @@ public class GDT_MessageLine
     wholeLine = line;
   }
 
+
+  public GDT_MessageLine(string Part_length, string Part_type, string Part_content) : this(Part_length + Part_type + Part_content) {}
+
   /*  line consists of a 3 byte prefix representing the length of the line
    *  a 4 byte segment representing the field type id
    *  and the content of the field followed by a \r\n
