@@ -96,10 +96,7 @@ public class GDT_Content
   public void WriteUpdatedFile(string path) {
     string message = "";
     foreach (GDT_MessageLine line in gdtMessageLines) {
-      if (line.typePart.Equals("8100")) {
-        int sentenceLength = Convert.ToInt32(line.contentPart.Length) - gdtField6305_oldFileRefPtr.Length + gdtField6305_newFileRefPtr.Length;
-        line.SetNewContent(sentenceLength.ToString("D5"));
-      }
+      OnSentecelengthLine_Update(line, gdtField6305_oldFileRefPtr.Length, gdtField6305_newFileRefPtr.Length);
       if (line.typePart.Equals("6305")) {
         line.SetNewContent(gdtField6305_newFileRefPtr);
       }
