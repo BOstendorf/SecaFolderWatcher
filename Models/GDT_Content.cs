@@ -91,8 +91,6 @@ public class GDT_Content
     }
   }
 
-  //migrated from previous live version
-  //seems kinda pointless, but who am I to jugde
   public void WriteUpdatedFile(string path, string gdtField6305_value) {
     gdtField6305_newFileRefPtr = gdtField6305_value;
     string message = "";
