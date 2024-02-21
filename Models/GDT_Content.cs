@@ -42,13 +42,13 @@ public class GDT_Content
         GDT_MessageLine gdtLine = new GDT_MessageLine(line);
         gdtMessageLines.Add(gdtLine);
         if(String.Compare(gdtLine.typePart, "3000", false) == 0) {
-          this.gdtField3100_ID = gdtLine.contentPart;
+          this.gdtField3000_ID = gdtLine.contentPart;
         }
         if(String.Compare(gdtLine.typePart, "6305", false) == 0) {
           this.gdtField6305_oldFileRefPtr = gdtLine.contentPart;
         }
       }
-      Logger.LogInformation($"Found ID is {gdtField3100_ID}");
+      Logger.LogInformation($"Found ID is {gdtField3000_ID}");
       Logger.LogInformation($"Found referenced file {gdtField6305_oldFileRefPtr}");
     }
     catch (Exception e)
