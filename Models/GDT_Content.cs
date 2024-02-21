@@ -58,11 +58,27 @@ public class GDT_Content
   }
 
   public void Delete_gdtField6305_oldFileRefPtr(){
+    if (!File.Exists(gdtField6305_oldFileRefPtr)) {
+      Logger.LogError($"The referenced file {gdtField6305_oldFileRefPtr} does not exist. Can't delete non existing file");
+      return;
+    }
+    if (gdtField6305_oldFileRefPtr.Equals("")) {
+      Logger.LogWarning($"There is no file reference contained in the current gdt message");
+      return;
+    }
     Logger.LogInformation($"Removing file {gdtField6305_oldFileRefPtr}");
     File.Delete(gdtField6305_oldFileRefPtr);
   }
 
   public void Copy_gdtField6305_oldFileRefPtr(DirectoryInfo targetDir){
+    if (!File.Exists(gdtField6305_oldFileRefPtr)) {
+      Logger.LogError($"The referenced file {gdtField6305_oldFileRefPtr} does not exist. Can't copy file to other location");
+      return;
+    }
+    if (gdtField6305_oldFileRefPtr.Equals("")) {
+      Logger.LogWarning($"There is no file reference contained in the current gdt message");
+      return;
+    }
       string targetPath = Path.Combine(targetDir.FullName, gdtField6305_newFileRefPtr);
       Logger.LogInformation($"Copying {gdtField6305_oldFileRefPtr} to {targetPath}");
       File.Copy(gdtField6305_oldFileRefPtr, targetPath);
