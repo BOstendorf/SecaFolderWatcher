@@ -53,6 +53,7 @@ public class GDT_MessageLine
     typePart = line.Substring(3, 4);
     ValidateTypePartFormat(typePart);
     contentPart = line.Substring(7);
+    contentPart = contentPart.Replace("\r\n", "");
     if (line.Length != lineLength) {
       throw new FormatException($"The length of the given line doesn't match the encoded line lenght. The encoded length is {lineLength} while the actual length is {line.Length}");
     }
@@ -94,9 +95,9 @@ public class GDT_MessageLine
   public void SetNewContent(string content)
   {
     if (!content.EndsWith("\r\n")) content = content + "\r\n";
-    contentPart = content;
     lineLength = content.Length + 7;
     lengthPart = lineLength.ToString("D3");
-    wholeLine = lengthPart + typePart + contentPart;
+    wholeLine = lengthPart + typePart + content;
+    contentPart = content.Replace("\r\n", "");
   }
 }
