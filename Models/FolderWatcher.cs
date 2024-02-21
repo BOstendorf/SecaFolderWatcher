@@ -103,13 +103,13 @@ public class FolderWatcher
 
       if ((gdtContent.gdtField3000_ID.Length > 0) && (gdtContent.gdtField6305_oldFileRefPtr.Length > 0)){
       string newGDTFileName = $"{_systemID}_{gdtContent.gdtField3000_ID}_{datetimeString}{Path.GetExtension(path)}";
-      gdtContent.gdtField6305_newFileRefPtr = $"{_systemID}_{gdtContent.gdtField3000_ID}_{datetimeString}{Path.GetExtension(gdtContent.gdtField6305_oldFileRefPtr)}";
+      string gdtField6305_newFileRefPtr = $"{_systemID}_{gdtContent.gdtField3000_ID}_{datetimeString}{Path.GetExtension(gdtContent.gdtField6305_oldFileRefPtr)}";
       
       gdtContent.Copy_gdtField6305_oldFileRefPtr(_transfolder);
       
       string targetPath = Path.Combine(_transfolder.FullName, newGDTFileName);
       Logger.LogInformation($"Writing new GDT Message {targetPath}");
-      gdtContent.WriteUpdatedFile(targetPath);
+      gdtContent.WriteUpdatedFile(targetPath, gdtField6305_newFileRefPtr);
 
       gdtContent.Delete_gdtField6305_oldFileRefPtr();
     }
