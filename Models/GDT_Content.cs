@@ -107,6 +107,20 @@ public class GDT_Content
    */
   public static void SendPatientToWatchfolder(string targetDirPath, string targetFileName, string dhcc, string dateOfBirth, string sex)
   {
+    string message = GenerateSecaGDTMessage(dhcc, dateOfBirth, sex);
+    string targetPath = Path.Combine(targetDirPath, targetFileName);
+    StreamWriter outFileWriter = new StreamWriter(targetPath, false);
+    outFileWriter.WriteLine(message);
+    outFileWriter.Close();
+    Logger.LogInformation($"writing GDT file to {targetPath} with message being \n{message}");
+  }
+
+  /* Generates gdt message as intendet to be send to Seca device
+   * ergo containing the date of birth, sex and the id for the patient
+   *
+   */
+  public static string GenerateSecaGDTMessage(string dhcc, string dateOfBirth, string sex)
+  {
     if (!DataValidator.CheckSex(sex)) {
       throw new ArgumentException($"{DataValidator.GetSexFormatDescription()} The actual value is {sex}");
     }
@@ -130,24 +144,19 @@ public class GDT_Content
      * the date is given by ddmmyyyy
      * the sex is given as 1 for male and 2 for female (as defined by rule 112)
      */
-    GDT_MessageLine line;
     string message = "";
     // Satztyp Zeile
-    message += new GDT_MessageLine("013", "8000", "6301\r\n").wholeLine;
+    message += new GDT_MessageLine("8000", "6301\r\n").wholeLine;
     // Satzlänge Zeile
-    message += new GDT_MessageLine("014", "8100", "LLLLL\r\n").wholeLine;
+    message += new GDT_MessageLine("8100", "LLLLL\r\n").wholeLine;
     // Version Zeile
-    message += new GDT_MessageLine("014", "9218", "02.10\r\n").wholeLine;
+    message += new GDT_MessageLine("9218", "02.10\r\n").wholeLine;
     message += new GDT_MessageLine("3100", dhcc).wholeLine;
     message += new GDT_MessageLine("3101", dhcc).wholeLine;
     message += new GDT_MessageLine("3102", dhcc).wholeLine;
     message += new GDT_MessageLine("3103", dateOfBirth).wholeLine;
     message += new GDT_MessageLine("3110", sex).wholeLine;
     message = message.Replace("LLLLL", message.Length.ToString("D5"));
-    string targetPath = Path.Combine(targetDirPath, targetFileName);
-    StreamWriter outFileWriter = new StreamWriter(targetPath, false);
-    outFileWriter.WriteLine(message);
-    outFileWriter.Close();
-    Logger.LogInformation($"writing GDT file to {targetPath} with message being \n{message}");
+    return message;
   }
 }
