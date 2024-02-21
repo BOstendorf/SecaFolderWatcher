@@ -133,6 +133,8 @@ public class GDT_Content
       throw new ArgumentException($"{DataValidator.GetDateOfBirthFormatDescription()} The actual value is {dateOfBirth}");
     }
     /* The format of the sent gdt message is
+     * please note that the spaces are only for readability within this comment.
+     * in the actual message the whitespaces have to be omitted!
      * 013 8000 6301 # Satztyp = "Stammdaten übermitteln"
      * 014 8100 <ddddd> # Satzlänge
      * 014 9218 val # Version
