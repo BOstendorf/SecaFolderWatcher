@@ -106,7 +106,7 @@ public class GDT_Content
       FileStream fileStream = new FileStream(
           path, FileMode.Create, FileAccess.Write);
       StreamWriter fileWriter = new StreamWriter((Stream)fileStream);
-      fileWriter.WriteLine(message);
+      fileWriter.Write(message);
       fileWriter.Close();
       fileStream.Close();
     }
