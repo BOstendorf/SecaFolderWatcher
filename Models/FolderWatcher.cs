@@ -99,11 +99,11 @@ public class FolderWatcher
       }
       Logger.LogInformation("Reading gdt content from file");
       GDT_Content gdtContent = new GDT_Content(path);
-      Logger.LogInformation($"GDT content contains the id {gdtContent.gdtField3100_ID} and a reference to the file {gdtContent.gdtField6305_oldFileRefPtr}");
+      Logger.LogInformation($"GDT content contains the id {gdtContent.gdtField3000_ID} and a reference to the file {gdtContent.gdtField6305_oldFileRefPtr}");
 
-      if ((gdtContent.gdtField3100_ID.Length > 0) && (gdtContent.gdtField6305_oldFileRefPtr.Length > 0)){
-      string newGDTFileName = $"{_systemID}_{gdtContent.gdtField3100_ID}_{datetimeString}{Path.GetExtension(path)}";
-      gdtContent.gdtField6305_newFileRefPtr = $"{_systemID}_{gdtContent.gdtField3100_ID}_{datetimeString}{Path.GetExtension(gdtContent.gdtField6305_oldFileRefPtr)}";
+      if ((gdtContent.gdtField3000_ID.Length > 0) && (gdtContent.gdtField6305_oldFileRefPtr.Length > 0)){
+      string newGDTFileName = $"{_systemID}_{gdtContent.gdtField3000_ID}_{datetimeString}{Path.GetExtension(path)}";
+      gdtContent.gdtField6305_newFileRefPtr = $"{_systemID}_{gdtContent.gdtField3000_ID}_{datetimeString}{Path.GetExtension(gdtContent.gdtField6305_oldFileRefPtr)}";
       
       gdtContent.Copy_gdtField6305_oldFileRefPtr(_transfolder);
       
