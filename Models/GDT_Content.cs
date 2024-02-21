@@ -7,7 +7,7 @@ namespace SecaFolderWatcher;
 
 public class GDT_Content
 {
-  public string gdtField3100_ID {
+  public string gdtField3000_ID {
     get;
   } = "";
 
