@@ -110,7 +110,7 @@ public class GDT_Content
     string message = GenerateSecaGDTMessage(dhcc, dateOfBirth, sex);
     string targetPath = Path.Combine(targetDirPath, targetFileName);
     StreamWriter outFileWriter = new StreamWriter(targetPath, false);
-    outFileWriter.WriteLine(message);
+    outFileWriter.Write(message);
     outFileWriter.Close();
     Logger.LogInformation($"writing GDT file to {targetPath} with message being \n{message}");
   }
