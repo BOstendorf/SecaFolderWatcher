@@ -101,7 +101,7 @@ public class GDT_Content
       }
       message += line.wholeLine;
     }
-    Logger.LogInformation("writing GDT file to {path} with message being {message}");
+    Logger.LogInformation($"writing GDT file to {path} with message being {message}");
     try {
       FileStream fileStream = new FileStream(
           path, FileMode.Create, FileAccess.Write);
