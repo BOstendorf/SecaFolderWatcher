@@ -84,6 +84,13 @@ public class GDT_Content
       File.Copy(gdtField6305_oldFileRefPtr, targetPath);
   }
 
+  public static void OnSentecelengthLine_Update(GDT_MessageLine line, int replacedContentLength, int newContentLength){
+    if (line.typePart.Equals("8100")){
+      int sentenceLength = Convert.ToInt32(line.contentPart) - replacedContentLength + newContentLength;
+      line.SetNewContent(sentenceLength.ToString("D5"));
+    }
+  }
+
   //migrated from previous live version
   //seems kinda pointless, but who am I to jugde
   public void WriteUpdatedFile(string path) {
