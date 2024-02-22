@@ -128,10 +128,13 @@ public class GDT_Content
   {
     string message = GenerateSecaGDTMessage(dhcc, dateOfBirth, sex);
     string targetPath = Path.Combine(targetDirPath, targetFileName);
-    StreamWriter outFileWriter = new StreamWriter(targetPath, false);
-    outFileWriter.Write(message);
-    outFileWriter.Close();
     Logger.LogInformation($"writing GDT file to {targetPath} with message being \n{message}");
+    File.WriteAllText(targetPath, message);
+    /*StreamWriter outFileWriter = new StreamWriter(targetPath, false);
+     *outFileWriter.Write(message);
+     *outFileWriter.Close();
+    */
+    Logger.LogInformation($"finished writing GDT file");
   }
 
   /* Generates gdt message as intendet to be send to Seca device
