@@ -98,10 +98,10 @@ public static class Logger
             if(_testMode)
             {
               try {
-                _output.WriteLine(message);
+                _output.WriteLine("Using Output " + message);
               }
               catch {
-                Console.WriteLine(message);
+                Console.WriteLine("Using Console " + message);
               }
             }
             else 
@@ -139,6 +139,11 @@ public static class Logger
       LogErrorVerbose(message, e.Message);
     }
 
+    public static void LogTest(string message){
+      message = "Test Log ::> " + message;
+      FlushLog(_logPath, message);
+    }
+
     public static void LogInformation(string message)
     {
         message = "Information Log ::> " + message;
@@ -170,6 +175,12 @@ public static class Logger
 
     public static void LogErrorVerbose(string message, Exception e, string path){
       LogErrorVerbose(message, e.Message, path);
+    }
+
+    public static void LogTest(string message, string path)
+    {
+      message = "Test Log ::> " + message;
+      FlushLog(path, message);
     }
 
     public static void LogInformation(string message, string path)
