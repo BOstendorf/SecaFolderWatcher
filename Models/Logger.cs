@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Xunit.Abstractions;
 
 namespace SecaFolderWatcher;
 public static class Logger
@@ -9,6 +10,9 @@ public static class Logger
     private static List<Action> _listeningOnLog = new List<Action>();
     private static string _sessionLog = "";
     private static string _lastMessage = "";
+
+    private static bool _testMode = false;
+    private static ITestOutputHelper _output;
 
     private static string _logPrefix = "";
     public static string logPrefix
@@ -19,6 +23,13 @@ public static class Logger
             if (value.Equals("")) return;
             _logPrefix = $" <<{value}>> ";
         }
+    }
+
+    public static void EnableTestMode(ITestOutputHelper output)
+    {
+      _output = output;
+      _testMode = true;
+      _logPrefix = "";
     }
 
     public static string GetLastMessage()
@@ -84,7 +95,19 @@ public static class Logger
             fileWriter.Close();
             fileStream.Close();
             TriggerOnLogCallbacks();
-            Console.WriteLine(message);
+            if(_testMode)
+            {
+              try {
+                _output.WriteLine(message);
+              }
+              catch {
+                Console.WriteLine(message);
+              }
+            }
+            else 
+            {
+              Console.WriteLine(message);
+            }
         }
         catch (Exception ex)
         {
