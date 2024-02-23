@@ -108,7 +108,7 @@ public class FolderWatcher
       string newGDTFileName = $"{_systemID}_{gdtContent.gdtField3000_ID}_{datetimeString}{Path.GetExtension(path)}";
       string gdtField6305_newFileRefPtr = $"{_systemID}_{gdtContent.gdtField3000_ID}_{datetimeString}{Path.GetExtension(gdtContent.gdtField6305_oldFileRefPtr)}";
       
-      gdtContent.Copy_gdtField6305_oldFileRefPtr(_transfolder);
+      gdtContent.Copy_gdtField6305_oldFileRefPtr(_transfolder, gdtField6305_newFileRefPtr);
       
       string targetPath = Path.Combine(_transfolder.FullName, newGDTFileName);
       Logger.LogInformation($"Writing new GDT Message {targetPath}");

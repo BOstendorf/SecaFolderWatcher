@@ -21,7 +21,7 @@ public class GDT_Content
   } = "";
 
   //new pointer is file name only
-  public string gdtField6305_newFileRefPtr {
+  private string gdtField6305_newFileRefPtr {
     get;
     set;
   } = "";
@@ -70,7 +70,7 @@ public class GDT_Content
     File.Delete(gdtField6305_oldFileRefPtr);
   }
 
-  public void Copy_gdtField6305_oldFileRefPtr(DirectoryInfo targetDir){
+  public void Copy_gdtField6305_oldFileRefPtr(DirectoryInfo targetDir, string fileName){
     if (!File.Exists(gdtField6305_oldFileRefPtr)) {
       Logger.LogError($"The referenced file {gdtField6305_oldFileRefPtr} does not exist. Can't copy file to other location");
       return;
@@ -79,7 +79,7 @@ public class GDT_Content
       Logger.LogWarning($"There is no file reference contained in the current gdt message");
       return;
     }
-      string targetPath = Path.Combine(targetDir.FullName, gdtField6305_newFileRefPtr);
+      string targetPath = Path.Combine(targetDir.FullName, fileName);
       Logger.LogInformation($"Copying {gdtField6305_oldFileRefPtr} to {targetPath}");
       File.Copy(gdtField6305_oldFileRefPtr, targetPath);
   }
@@ -92,12 +92,11 @@ public class GDT_Content
   }
 
   public void WriteUpdatedFile(string path, string gdtField6305_value) {
-    gdtField6305_newFileRefPtr = gdtField6305_value;
     string message = "";
     foreach (GDT_MessageLine line in gdtMessageLines) {
-      OnSentecelengthLine_Update(line, gdtField6305_oldFileRefPtr.Length, gdtField6305_newFileRefPtr.Length);
+      OnSentecelengthLine_Update(line, gdtField6305_oldFileRefPtr.Length, gdtField6305_value.Length);
       if (line.typePart.Equals("6305")) {
-        line.SetNewContent(gdtField6305_newFileRefPtr);
+        line.SetNewContent(gdtField6305_value);
       }
       message += line.wholeLine;
     }
