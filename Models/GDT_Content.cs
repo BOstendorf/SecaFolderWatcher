@@ -175,7 +175,7 @@ public class GDT_Content
     message += new GDT_MessageLine("8100", "LLLLL\r\n").wholeLine;
     // Version Zeile
     message += new GDT_MessageLine("9218", "02.10\r\n").wholeLine;
-    message += new GDT_MessageLine("3100", dhcc).wholeLine;
+    message += new GDT_MessageLine("3000", dhcc).wholeLine;
     message += new GDT_MessageLine("3101", dhcc).wholeLine;
     message += new GDT_MessageLine("3102", dhcc).wholeLine;
     message += new GDT_MessageLine("3103", dateOfBirth).wholeLine;
