@@ -42,6 +42,6 @@
           <sys:String>F</sys:String>
         </ComboBox>
         <Button Command="{Binding ClickOK}" Grid.Row="4" Grid.Column="0" Margin="10" Content="OK"/>
-        <Button Command="{Binding ClickCancel}" Grid.Row="4" Grid.Column="1" Margin="10" Content="Cancel"/>
+<!-- <Button Command="{Binding ClickCancel}" Grid.Row="4" Grid.Column="1" Margin="10" Content="Cancel"/> -->        
     </Grid>
 </UserControl>
