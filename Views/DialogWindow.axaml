@@ -22,7 +22,12 @@
                     MaterialOpacity="0.65" />
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
+        <Border
+          BorderBrush="Black"
+          BorderThickness="1"
+          >
 
                 <v:GetPatientDataView DataContext="{Binding PatientData}" />
+        </Border>
     </Panel>
 </Window>
