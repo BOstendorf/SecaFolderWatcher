@@ -102,6 +102,11 @@ public class GetPatientDataViewModel : ViewModelBase
     Logger.LogInformation("currently selected sex is " + _sex);
     Logger.LogInformation($"Currently selected date of birth is {_dateOfBirth}");
     Logger.LogInformation($"currently selected dhcc {_dhcc}");
+    if (!inputsValid)
+    {
+      Logger.LogWarning("The inputs are not valid");
+      return;
+    }
     GDT_Content.SendPatientToWatchfolder(SettingsReader.GetDirPathOf(SettingsReader.settingID_watchfolder).FullName, _dhcc, _dateOfBirth.ToString("ddMMyyyy"), _sex);
   }
 
