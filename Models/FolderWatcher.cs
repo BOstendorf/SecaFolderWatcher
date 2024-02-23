@@ -56,10 +56,10 @@ public class FolderWatcher
   }
 
   public void EnableWatcherEventLoop(){
-    Logger.LogInformation("Enable FolderWatcher event loop");
+    Logger.LogInformation("Enable FolderWatcher event loop to listen on directory " + _watchfolder.FullName);
     watcher = new FileSystemWatcher();
     watcher.Path = _watchfolder.FullName;
-    watcher.Filter = "*";
+    watcher.Filter = "*.*";
     watcher.IncludeSubdirectories = false;
 
     watcher.NotifyFilter = NotifyFilters.Attributes |
@@ -71,6 +71,8 @@ public class FolderWatcher
       NotifyFilters.DirectoryName;
 
     watcher.Created += OnCreated;
+    watcher.Changed += OnCreated;
+    watcher.EnableRaisingEvents = true;
   }
 
   private void OnCreated(object sender, FileSystemEventArgs e)
