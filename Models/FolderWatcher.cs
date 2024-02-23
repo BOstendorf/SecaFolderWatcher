@@ -56,6 +56,7 @@ public class FolderWatcher
   }
 
   public void EnableWatcherEventLoop(){
+    Logger.LogInformation("Enable FolderWatcher event loop");
     watcher = new FileSystemWatcher();
     watcher.Path = _watchfolder.FullName;
     watcher.Filter = "*";
