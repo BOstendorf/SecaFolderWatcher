@@ -60,6 +60,8 @@ namespace SecaFolderWatcher.ViewModels
         {
             Logger.EmptySessionLog();
             InfoText = "";
+            HCHSButtonColor = _defaultButtonColor;
+            NAKOButtonColor = _defaultButtonColor;
         }
 
         public GetPatientDataViewModel PatientData { get; } = new GetPatientDataViewModel();
