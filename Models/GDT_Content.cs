@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace SecaFolderWatcher;
 
@@ -113,11 +114,10 @@ public class GDT_Content
     string? typeID = getGDTTypeID("Patient-ID");
     if (typeID == null) throw new ApplicationException("no type id could be obtained for the gdt type description Patient-ID");
     if (this.contentsByType.ContainsKey(typeID) && DataValidator.CheckDHCC(this.contentsByType[typeID])) return;
-    string? typeVorname = getGDTTypeID("Vorname");
-    if (!TryParsePatientIDIndexedByTypeOfDescription("Vorname", typeID)) return;
-    if (!TryParsePatientIDIndexedByTypeOfDescription("Name", typeID)) return;
+    if (TryParsePatientIDIndexedByTypeOfDescription("Vorname", typeID)) return;
+    if (TryParsePatientIDIndexedByTypeOfDescription("Name", typeID)) return;
     
-    throw new ApplicationException("For the current .gdt message no Patient-ID could be determined");
+    throw new ApplicationException($"For the current .gdt message no Patient-ID could be determined. The available data is {JsonConvert.SerializeObject(contentsByType, Formatting.Indented)}");
   }
 
   public void Delete_gdtField6305_oldFileRefPtr(){
