@@ -7,6 +7,15 @@ namespace SecaFolderWatcher;
 
 public class GDT_Content
 {
+  public static Dictionary<string, string> gdtTypes = new Dictionary<string, string> {
+    {"3000", "Patient-ID"},
+    {"3100", "Namenszusatz"},
+    {"3101", "Vorname"},
+    {"3102", "Name"},
+    {"3103", "Geburtsdatum"},
+    {"3110", "Geschlecht"},
+  };
+
   public string gdtField3000_ID {
     get;
   } = "";
