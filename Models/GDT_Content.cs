@@ -14,6 +14,7 @@ public class GDT_Content
     {"3102", "Name"},
     {"3103", "Geburtsdatum"},
     {"3110", "Geschlecht"},
+    {"6305", "Dateireferenz"},
   };
 
   public static string? getGDTTypeID(string typeDescription) {
@@ -24,7 +25,7 @@ public class GDT_Content
         return pair.Key;
       }
     }
-    return null;
+    throw new ArgumentException($"there is no type id for the given type description {typeDescription}");
   }
 
   public static string? getGDTTypeDescription(string typeID) {
@@ -33,6 +34,7 @@ public class GDT_Content
   
   public string gdtField3000_ID {
     get;
+    private set;
   } = "";
 
   public string[] gdtMessage {
@@ -42,6 +44,7 @@ public class GDT_Content
   //old pointer is fullpath
   public string gdtField6305_oldFileRefPtr {
     get;
+    private set;
   } = "";
 
   //new pointer is file name only
@@ -54,6 +57,10 @@ public class GDT_Content
     get;
   } = new List<GDT_MessageLine>();
 
+  public Dictionary<string, string> contentsByType {
+    get;
+  } = new Dictionary<string, string>();
+
   public GDT_Content(string gdtFile_path){
     try
     {
@@ -65,13 +72,9 @@ public class GDT_Content
         Logger.LogInformation($"reading line {line}");
         GDT_MessageLine gdtLine = new GDT_MessageLine(line);
         gdtMessageLines.Add(gdtLine);
-        if(String.Compare(gdtLine.typePart, "3000", false) == 0) {
-          this.gdtField3000_ID = gdtLine.contentPart;
-        }
-        if(String.Compare(gdtLine.typePart, "6305", false) == 0) {
-          this.gdtField6305_oldFileRefPtr = gdtLine.contentPart;
-        }
+        ProcessGDTTypes(gdtLine);
       }
+      DeterminePatientIDPresent();
       Logger.LogInformation($"Found ID is {gdtField3000_ID}");
       Logger.LogInformation($"Found referenced file {gdtField6305_oldFileRefPtr}");
     }
@@ -79,6 +82,36 @@ public class GDT_Content
     {
       Logger.LogError(e.Message);
     }
+  }
+
+  private void ProcessGDTTypes(GDT_MessageLine line)
+  {
+    string? id = getGDTTypeID("Patient-ID");
+    if(line.typePart.Equals(id)) {
+      if(!DataValidator.CheckDHCC(line.contentPart)) return;
+      this.gdtField3000_ID = line.contentPart;
+    }
+    string? fileRef = getGDTTypeID("Dateireferenz");
+    if(line.typePart.Equals(fileRef)) {
+      this.gdtField6305_oldFileRefPtr = line.contentPart;
+    }
+    this.contentsByType.Add(line.typePart, line.contentPart);
+  }
+
+  private void DeterminePatientIDPresent() {
+    string typeID = getGDTTypeID("Patient-ID");
+    if (this.contentsByType.ContainsKey(typeID)) return;
+    if (this.contentsByType.ContainsKey(getGDTTypeID("Vorname"))) {
+      this.contentsByType.Add(typeID, this.contentsByType["Vorname"]);
+      this.gdtField3000_ID = this.contentsByType["Vorname"];
+      return;
+    }
+    if (this.contentsByType.ContainsKey(getGDTTypeID("Name"))) {
+      this.contentsByType.Add(typeID, this.contentsByType["Name"]);
+      this.gdtField3000_ID = this.contentsByType["Name"];
+      return;
+    }
+    throw new ApplicationException("For the current .gdt message no Patient-ID could be determined");
   }
 
   public void Delete_gdtField6305_oldFileRefPtr(){
