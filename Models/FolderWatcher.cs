@@ -86,7 +86,7 @@ public class FolderWatcher
 
   private void OnChanged(object sender, FileSystemEventArgs e)
   {
-    Logger.LogInformation("$File {e.FullPath} has changed");
+    Logger.LogInformation($"File {e.FullPath} has changed");
   }
 
   public static bool FileGeneratedBySeca(string path){
