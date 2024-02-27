@@ -36,6 +36,9 @@ namespace SecaFolderWatcher.ViewModels
         public ICommand DialogWindowCommand { get; private set; }
         public Interaction<DialogWindowViewModel, DialogResultViewModel?> ShowDialog { get; private set; }
 
+        public ICommand NakoWindowCommand { get; private set; }
+        public Interaction<DialogWindowViewModel, DialogResultViewModel?> ShowNako { get; private set; }
+
         private FolderWatcher _folderWatcher { get; set; }
 
         private void PrepareFolderWatcher()
@@ -97,11 +100,11 @@ namespace SecaFolderWatcher.ViewModels
             ShowDialog = new Interaction<DialogWindowViewModel, DialogResultViewModel?>();
             DialogWindowCommand = ReactiveCommand.CreateFromTask(async () =>
             {
+                    HCHSButtonColor = Brushes.PaleGreen;
+                    NAKOButtonColor = Brushes.OrangeRed;
                 try
                 {
                     Mode_HCHS.TryDisableNAKO();
-                    HCHSButtonColor = Brushes.PaleGreen;
-                    NAKOButtonColor = Brushes.OrangeRed;
                 }
                 catch (Exception e)
                 {
@@ -114,6 +117,17 @@ namespace SecaFolderWatcher.ViewModels
                 var dialog = new DialogWindowViewModel();
                 var result = await ShowDialog.Handle(dialog);
             });
+            NakoWindowCommand = ReactiveCommand.CreateFromTask(async () => {
+                  NAKOButtonColor = Brushes.PaleGreen;
+                  HCHSButtonColor = Brushes.OrangeRed;
+                  try
+                  {
+                    //Mode_HCHS.TryEnableNAKO();
+                  }
+                  catch (Exception e)
+                  {
+                  }
+                });
         }
     }
 }
