@@ -45,7 +45,7 @@ public class GetPatientDataViewModel : ViewModelBase
   {
     get => _dhcc;
     set {
-      this.RaiseAndSetIfChanged(ref _dhcc, value);
+      this.RaiseAndSetIfChanged(ref _dhcc, value.ToUpper());
     }
   }
 
