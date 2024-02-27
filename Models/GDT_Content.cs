@@ -16,6 +16,21 @@ public class GDT_Content
     {"3110", "Geschlecht"},
   };
 
+  public static string? getGDTTypeID(string typeDescription) {
+    foreach (var pair in gdtTypes)
+    {
+      if(pair.Value.Equals(typeDescription))
+      {
+        return pair.Key;
+      }
+    }
+    return null;
+  }
+
+  public static string? getGDTTypeDescription(string typeID) {
+    return gdtTypes.GetValueOrDefault(typeID);
+  }
+  
   public string gdtField3000_ID {
     get;
   } = "";
