@@ -81,6 +81,7 @@ public class GDT_Content
     catch (Exception e)
     {
       Logger.LogError(e.Message);
+      throw e;
     }
   }
 
