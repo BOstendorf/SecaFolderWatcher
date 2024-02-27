@@ -110,18 +110,13 @@ public class GDT_Content
   }
 
   private void DeterminePatientIDPresent() {
-    string typeID = getGDTTypeID("Patient-ID");
-    if (this.contentsByType.ContainsKey(typeID)) return;
-    if (this.contentsByType.ContainsKey(getGDTTypeID("Vorname"))) {
-      this.contentsByType.Add(typeID, this.contentsByType["Vorname"]);
-      this.gdtField3000_ID = this.contentsByType["Vorname"];
-      return;
-    }
-    if (this.contentsByType.ContainsKey(getGDTTypeID("Name"))) {
-      this.contentsByType.Add(typeID, this.contentsByType["Name"]);
-      this.gdtField3000_ID = this.contentsByType["Name"];
-      return;
-    }
+    string? typeID = getGDTTypeID("Patient-ID");
+    if (typeID == null) throw new ApplicationException("no type id could be obtained for the gdt type description Patient-ID");
+    if (this.contentsByType.ContainsKey(typeID) && DataValidator.CheckDHCC(this.contentsByType[typeID])) return;
+    string? typeVorname = getGDTTypeID("Vorname");
+    if (!TryParsePatientIDIndexedByTypeOfDescription("Vorname", typeID)) return;
+    if (!TryParsePatientIDIndexedByTypeOfDescription("Name", typeID)) return;
+    
     throw new ApplicationException("For the current .gdt message no Patient-ID could be determined");
   }
 
