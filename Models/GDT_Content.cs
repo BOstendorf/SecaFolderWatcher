@@ -98,6 +98,16 @@ public class GDT_Content
     }
     this.contentsByType.Add(line.typePart, line.contentPart);
   }
+  private bool TryParsePatientIDIndexedByTypeOfDescription(string typedescription, string typeID_id)
+  {
+    string? type = getGDTTypeID(typedescription);
+    if (type == null || !this.contentsByType.ContainsKey(type)) return false;
+    string id = this.contentsByType[type];
+    if (!DataValidator.CheckDHCC(id)) return false;
+    this.contentsByType.Add(typeID_id, id);
+    this.gdtField3000_ID = id;
+    return true;
+  }
 
   private void DeterminePatientIDPresent() {
     string typeID = getGDTTypeID("Patient-ID");
